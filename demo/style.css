@@ -1,0 +1,20 @@
+body {
+	font-family:Helvetica, Arial, sans-serif;
+	margin:0;
+	padding:0;
+	font-size:100%;
+}
+
+.mm_menu {
+	display:none;
+}
+
+@media screen and (max-width: 40em) {
+	.js #menu {
+		display:none;
+	}
+	
+	.js .mm_menu {
+		display:block;
+	}
+}
