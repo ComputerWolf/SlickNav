@@ -1,5 +1,5 @@
 /*!
-	jQuery Mobile Menu
+	Responsive Mobile Menu
 	(c) 2013 Josh Cope
 	licensed under GPL and MIT
 */
