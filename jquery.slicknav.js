@@ -1,5 +1,5 @@
 /*!
-	Responsive Mobile Menu
+	SlickNav Responsive Mobile Menu
 	(c) 2013 Josh Cope
 	licensed under GPL and MIT
 */
@@ -16,8 +16,8 @@
 		parentTag: 'a',
 		closeOnClick: false,
 	},
-	mobileMenu = 'mobileMenu',
-	prefix = 'mm';
+	mobileMenu = 'slicknav',
+	prefix = 'slicknav';
 	
 	$.fn[mobileMenu] = function (options) {
 		return this.each(function() {

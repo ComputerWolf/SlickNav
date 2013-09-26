@@ -5,7 +5,7 @@ body {
 	font-size:100%;
 }
 
-.mm_menu {
+.slicknav_menu {
 	display:none;
 }
 
@@ -14,7 +14,7 @@ body {
 		display:none;
 	}
 	
-	.js .mm_menu {
+	.js .slicknav_menu {
 		display:block;
 	}
 }

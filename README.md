@@ -1,4 +1,5 @@
-# Responsive Mobile Menu jQuery Plugin
+# SlickNav
+## Responsive Mobile Menu jQuery Plugin
 
 
 
@@ -14,9 +15,9 @@
 ### Usage
 
 ####Include the CSS
-mobileMenu.css can be modified to fit website design
+slicknav.css can be modified to fit website design
 
-    <link rel="stylesheet" href="mobileMenu/mobileMenu.css" />
+    <link rel="stylesheet" href="SlickNav/slicknav.css" />
 
 ####Menu Markup
 
@@ -30,7 +31,7 @@ mobileMenu.css can be modified to fit website design
 
 	<script>
 		$(function(){
-			$('#menu').mobileMenu();
+			$('#menu').slicknav();
 		});
 	</script>	
 
