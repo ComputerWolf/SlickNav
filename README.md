@@ -1,4 +1,4 @@
-# jQuery Mobile Menu Plugin
+# Responsive Mobile Menu jQuery Plugin
 
 
 
