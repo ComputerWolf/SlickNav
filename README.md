@@ -1,7 +1,7 @@
 # SlickNav
 ## Responsive Mobile Menu jQuery Plugin
 
-
+###[SlickNav.com](http://slicknav.com)
 
 ### Features
 * Supports with multi-level menus
@@ -23,7 +23,7 @@ slicknav.css can be modified to fit website design
 
     <ul id="menu">
         <li><a href="#">item 1</a></li>
-    	<li><a href="#">item 2</a></li>
+        <li><a href="#">item 2</a></li>
     	<li><a href="#">item 3</a></li>
     	<li><a href="#">item 4</a></li>
     </ul>
@@ -63,7 +63,9 @@ For example:
     		display:block;
     	}
     }
-	
+
+More examples at [SlickNav.com](http://slicknav.com)
+
 ### Browser Support
 * Chrome
 * Firefox
