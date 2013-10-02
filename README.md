@@ -4,11 +4,11 @@
 ###[SlickNav.com](http://slicknav.com)
 
 ### Features
-* Supports with multi-level menus
+* Multi-level menu support
 * Flexible, simple markup
 * Cross-browser compatibility
 * Keyboard Accessible
-* Degrades gracefully if javascript disabled
+* Degrades gracefully without JavaScript
 * Creates ARIA compliant menu
 
 * * *
