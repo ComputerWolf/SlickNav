@@ -14,7 +14,7 @@
 		easingClose: 'swing',
 		prependTo: 'body',
 		parentTag: 'a',
-		closeOnClick: false,
+		closeOnClick: false
 	},
 	mobileMenu = 'slicknav',
 	prefix = 'slicknav';
@@ -111,7 +111,16 @@
 			
 			// accessibility for menu button
 			mobileNav.attr('role','menu');
-
+			
+			//Outline prevention when using mouse
+			$(document).mousedown(function(){
+				outlines(false);
+			});
+			
+			$(document).keyup(function(){
+				outlines(true);
+			});
+			
 			// menu button click
 			$(btn).click(function (e) {
 				e.preventDefault();
@@ -121,10 +130,6 @@
 			// click on menu parent
 			mobileNav.on('click', '.'+prefix+'_item', function(e){
 				e.preventDefault();
-				// remove focus on mouse click
-				this.blur();                 // most browsers
-				this.hideFocus = false;      // internet explorer
-				$(this).css('outline','none'); // mozilla
 				itemClick($(this));
 			});
 			
@@ -174,7 +179,7 @@
 					duration = settings.duration;
 				
 				if (el.hasClass(prefix+'_hidden')) {
-					el.removeClass(prefix+'_hidden')
+					el.removeClass(prefix+'_hidden');
 					el.slideDown(duration, settings.easingOpen);
 					el.attr('aria-hidden','false');
 					items.attr('tabindex', '0');
@@ -227,6 +232,14 @@
 					el.data("menu", data);
 				}
 				return data.links;
+			}
+			
+			function outlines(state) {
+				if (!state) {
+					$('.'+prefix+'_item, .'+prefix+'_btn').css('outline','none');
+				} else {
+					$('.'+prefix+'_item, .'+prefix+'_btn').css('outline','');
+				}
 			}
 		});
 	};
