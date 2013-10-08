@@ -49,7 +49,7 @@ Without any additional configuration, both the original and mobile menus will be
 
 For example:
 
-    .mm_menu {
+    .slicknav_menu {
         display:none;
     }
     
@@ -59,7 +59,7 @@ For example:
     		display:none;
     	}
     	
-    	.js .mm_menu {
+    	.js .slicknav_menu {
     		display:block;
     	}
     }
