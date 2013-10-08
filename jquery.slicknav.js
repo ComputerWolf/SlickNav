@@ -50,7 +50,7 @@
 			// create menu bar
 			mobileNav.attr('class', prefix+'_nav');
 			var menuBar = $('<div class="'+prefix+'_menu"></div>');
-			var btn = $('<a href="#" aria-haspopup="true" class="'+prefix+'_btn"><span class="'+prefix+'_menutxt">'+settings.label+'</span><span class="'+iconClass+'"><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span></span></a>');
+			var btn = $('<'+settings.parentTag+' aria-haspopup="true" tabindex="0" class="'+prefix+'_btn"><span class="'+prefix+'_menutxt">'+settings.label+'</span><span class="'+iconClass+'"><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span></span></a>');
 			$(menuBar).append(btn);		
 			$(settings.prependTo).prepend(menuBar);
 			menuBar.append(mobileNav);
@@ -128,7 +128,15 @@
 				itemClick($(this));
 			});
 			
-			// check for enter key on menu parents
+			// check for enter key on menu button and menu parents
+			$(btn).keydown(function (e) {
+				var ev = e || event;
+					if(ev.keyCode == 13) {
+					e.preventDefault();
+					visibilityToggle(mobileNav, true);
+				}
+			});
+			
 			mobileNav.on('keydown', '.'+prefix+'_item', function(e) {
 				var ev = e || event;
 				if(ev.keyCode == 13) {
