@@ -150,6 +150,11 @@
 				}
 			});
 			
+			//Allow links clickable within parent tags
+			$('.'+prefix+'_item a').click(function(e){
+				e.stopImmediatePropagation();
+			});
+			
 			// toggle clicked items
 			function itemClick(el) {
 				var data = el.data("menu");
