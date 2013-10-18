@@ -11,7 +11,7 @@
 .slicknav_nav { clear: both }
 .slicknav_nav ul,
 .slicknav_nav li { display: block }
-.slicknav_nav .slicknav_arrow { font-size: 0.8em }
+.slicknav_nav .slicknav_arrow { font-size: 0.8em; margin: 0 0 0 0.4em; }
 .slicknav_nav .slicknav_item { display: block; cursor: pointer; }
 .slicknav_nav a { display: block }
 .slicknav_nav .slicknav_item a { display: inline }

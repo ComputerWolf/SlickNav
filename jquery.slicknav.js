@@ -12,6 +12,8 @@
 		duration: 200,
 		easingOpen: 'swing',
 		easingClose: 'swing',
+		closedSymbol: '&#9658;',
+		openedSymbol: '&#9660;',
 		prependTo: 'body',
 		parentTag: 'a',
 		closeOnClick: false
@@ -85,7 +87,7 @@
 					item.addClass(prefix+'_parent');
 					
 					// create parent arrow
-					$(nodes).last().after('<span class="'+prefix+'_arrow"> &#9658;</span>');
+					$(nodes).last().after('<span class="'+prefix+'_arrow">'+settings.closedSymbol+'</span>');
 					
 				
 				} else if ( item.children().length == 0) {
@@ -166,11 +168,11 @@
 					el.data("menu", data);
 				}
 				if (el.parent().hasClass(prefix+'_collapsed')) {
-					data.arrow.html(' &#9660;');
+					data.arrow.html(settings.openedSymbol);
 					data.parent.removeClass(prefix+'_collapsed');
 					visibilityToggle(data.ul, true);
 				} else {
-					data.arrow.html(' &#9658;');
+					data.arrow.html(settings.closedSymbol);
 					data.parent.addClass(prefix+'_collapsed');
 					visibilityToggle(data.ul, true);
 				}

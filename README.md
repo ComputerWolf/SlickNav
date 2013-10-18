@@ -41,6 +41,8 @@ slicknav.css can be modified to fit website design
 	'duration': true, // The duration of the sliding animation.
 	'easingOpen': 'swing', // Easing used for open animations.
 	'easingClose': 'swing' // Easing used for close animations.
+	'closedSymbol': '&#9658;', // Character after collapsed parents.
+	'openedSymbol': '&#9660;', // Character after expanded parents.
 	'prependTo': 'body' // Element, jQuery object, or jQuery selector string to prepend the mobile menu to.
 	'parentTag': 'a' // Element type for parent menu items.
 	'closeOnClick': false // Close menu when a link is clicked.
