@@ -16,7 +16,8 @@
 		openedSymbol: '&#9660;',
 		prependTo: 'body',
 		parentTag: 'a',
-		closeOnClick: false
+		closeOnClick: false,
+		allowParentLinks: false
 	},
 	mobileMenu = 'slicknav',
 	prefix = 'slicknav';
@@ -114,7 +115,7 @@
 			// accessibility for menu button
 			mobileNav.attr('role','menu');
 			
-			//Outline prevention when using mouse
+			// outline prevention when using mouse
 			$(document).mousedown(function(){
 				outlines(false);
 			});
@@ -152,10 +153,12 @@
 				}
 			});
 			
-			//Allow links clickable within parent tags
-			$('.'+prefix+'_item a').click(function(e){
-				e.stopImmediatePropagation();
-			});
+			// allow links clickable within parent tags if set
+			if (settings.allowParentLinks) {
+				$('.'+prefix+'_item a').click(function(e){
+						e.stopImmediatePropagation();
+				});
+			}
 			
 			// toggle clicked items
 			function itemClick(el) {

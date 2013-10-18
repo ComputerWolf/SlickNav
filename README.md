@@ -46,6 +46,7 @@ slicknav.css can be modified to fit website design
 	'prependTo': 'body' // Element, jQuery object, or jQuery selector string to prepend the mobile menu to.
 	'parentTag': 'a' // Element type for parent menu items.
 	'closeOnClick': false // Close menu when a link is clicked.
+	'allowParentLinks': false // Allow clickable links as parent elements.
     
 Without any additional configuration, both the original and mobile menus will be displayed. It is recommended to use media queries to hide the original menu and display the mobile menu when appropriate. Modernizr or similar can be used for graceful degradation.
 
