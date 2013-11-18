@@ -201,6 +201,7 @@
 						el.attr('aria-hidden','true');
 						items.attr('tabindex', '-1');
 						setVisAttr(el, true);
+						el.hide(); //jQuery 1.7 bug fix
 					});
 				}
 			}
