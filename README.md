@@ -43,10 +43,20 @@ slicknav.css can be modified to fit website design
 	'easingClose': 'swing' // Easing used for close animations.
 	'closedSymbol': '&#9658;', // Character after collapsed parents.
 	'openedSymbol': '&#9660;', // Character after expanded parents.
-	'prependTo': 'body' // Element, jQuery object, or jQuery selector string to prepend the mobile menu to.
-	'parentTag': 'a' // Element type for parent menu items.
-	'closeOnClick': false // Close menu when a link is clicked.
+	'prependTo': 'body', // Element, jQuery object, or jQuery selector string to prepend the mobile menu to.
+	'parentTag': 'a', // Element type for parent menu items.
+	'closeOnClick': false, // Close menu when a link is clicked.
 	'allowParentLinks': false // Allow clickable links as parent elements.
+	
+### Callbacks
+	'init': function(){}, // Called after SlickNav creation
+	'open': function(trigger){}, // Called after menu or sub-menu opened. 
+	'close': function(trigger){} // Called after menu or sub-menu closed.
+
+### Methods
+	$('.menu').slicknav('toggle'); // Method to toggle the menu
+	$('.menu').slicknav('open'); // Method to open the menu
+	$('.menu').slicknav('close'); // Method to close the menu
     
 Without any additional configuration, both the original and mobile menus will be displayed. It is recommended to use media queries to hide the original menu and display the mobile menu when appropriate. Modernizr or similar can be used for graceful degradation.
 
