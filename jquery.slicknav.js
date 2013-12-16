@@ -17,7 +17,10 @@
 		prependTo: 'body',
 		parentTag: 'a',
 		closeOnClick: false,
-		allowParentLinks: false
+		allowParentLinks: false,
+		init: function(){},
+		open: function(){},
+		close: function(){}
 	},
 	mobileMenu = 'slicknav',
 	prefix = 'slicknav';
@@ -53,7 +56,7 @@
 			// create menu bar
 			mobileNav.attr('class', prefix+'_nav');
 			var menuBar = $('<div class="'+prefix+'_menu"></div>');
-			var btn = $('<'+settings.parentTag+' aria-haspopup="true" tabindex="0" class="'+prefix+'_btn"><span class="'+prefix+'_menutxt">'+settings.label+'</span><span class="'+iconClass+'"><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span></span></a>');
+			var btn = $('<'+settings.parentTag+' aria-haspopup="true" tabindex="0" class="'+prefix+'_btn '+prefix+'_collapsed"><span class="'+prefix+'_menutxt">'+settings.label+'</span><span class="'+iconClass+'"><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span><span class="'+prefix+'_icon-bar"></span></span></a>');
 			$(menuBar).append(btn);		
 			$(settings.prependTo).prepend(menuBar);
 			menuBar.append(mobileNav);
@@ -106,11 +109,11 @@
 			// structure is in place, now hide appropriate items
 			$(items).each(function () {
 				var data = $(this).data("menu");
-				visibilityToggle(data.children, false);
+				visibilityToggle(data.children, false, null, true);
 			});
 			
 			// finally toggle entire menu
-			visibilityToggle(mobileNav, false);
+			visibilityToggle(mobileNav, false, 'init', true);
 			
 			// accessibility for menu button
 			mobileNav.attr('role','menu');
@@ -127,7 +130,15 @@
 			// menu button click
 			$(btn).click(function (e) {
 				e.preventDefault();
-				visibilityToggle(mobileNav, true);
+				el = $(this);
+				if (el.hasClass(prefix+'_collapsed')) {
+					el.removeClass(prefix+'_collapsed');
+					el.addClass(prefix+'_open');
+				} else {
+					el.removeClass(prefix+'_open');
+					el.addClass(prefix+'_collapsed');
+				}
+				visibilityToggle(mobileNav, true, btn);
 			});
 			
 			// click on menu parent
@@ -170,19 +181,21 @@
 					data.parent = el.parent();
 					el.data("menu", data);
 				}
-				if (el.parent().hasClass(prefix+'_collapsed')) {
+				if (data.parent.hasClass(prefix+'_collapsed')) {
 					data.arrow.html(settings.openedSymbol);
 					data.parent.removeClass(prefix+'_collapsed');
-					visibilityToggle(data.ul, true);
+					data.parent.addClass(prefix+'_open');
+					visibilityToggle(data.ul, true, el);
 				} else {
 					data.arrow.html(settings.closedSymbol);
 					data.parent.addClass(prefix+'_collapsed');
-					visibilityToggle(data.ul, true);
+					data.parent.removeClass(prefix+'_open');
+					visibilityToggle(data.ul, true, el);
 				}
 			}
 
 			// toggle actual visibility and accessibility tags
-			function visibilityToggle(el, animate) {
+			function visibilityToggle(el, animate, trigger, init) {
 				var items = getActionItems(el);
 				var duration = 0;
 				if (animate)
@@ -190,11 +203,14 @@
 				
 				if (el.hasClass(prefix+'_hidden')) {
 					el.removeClass(prefix+'_hidden');
-					el.slideDown(duration, settings.easingOpen);
+					el.slideDown(duration, settings.easingOpen, function(){
+						if (!init) {
+							settings.open(trigger);
+						}
+					});
 					el.attr('aria-hidden','false');
 					items.attr('tabindex', '0');
 					setVisAttr(el, false);
-					
 				} else {
 					el.addClass(prefix+'_hidden');
 					el.slideUp(duration, settings.easingClose, function() {
@@ -202,6 +218,10 @@
 						items.attr('tabindex', '-1');
 						setVisAttr(el, true);
 						el.hide(); //jQuery 1.7 bug fix
+						if (!init)
+							settings.close(trigger);
+						else if (trigger == 'init')
+							settings.init();
 					});
 				}
 			}
