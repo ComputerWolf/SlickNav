@@ -145,15 +145,8 @@
 		// menu button click
 		$($this.btn).click(function (e) {
 			e.preventDefault();
-			el = $(this);
-			if (el.hasClass(prefix+'_collapsed')) {
-				el.removeClass(prefix+'_collapsed');
-				el.addClass(prefix+'_open');
-			} else {
-				el.removeClass(prefix+'_open');
-				el.addClass(prefix+'_collapsed');
-			}
-			$this._visibilityToggle($this.mobileNav, true, $this.btn);
+			$this._menuToggle();
+			
 		});
 		
 		// click on menu parent
@@ -165,9 +158,9 @@
 		// check for enter key on menu button and menu parents
 		$($this.btn).keydown(function (e) {
 			var ev = e || event;
-				if(ev.keyCode == 13) {
+			if(ev.keyCode == 13) {
 				e.preventDefault();
-				$this._visibilityToggle($this.mobileNav, true);
+				$this._menuToggle();
 			}
 		});
 		
@@ -186,6 +179,22 @@
 			});
 		}
     };
+	
+	//toggle menu
+	Plugin.prototype._menuToggle = function(el){
+		var $this = this;
+		var btn = $this.btn;
+		var mobileNav = $this.mobileNav;
+		
+		if (btn.hasClass(prefix+'_collapsed')) {
+			btn.removeClass(prefix+'_collapsed');
+			btn.addClass(prefix+'_open');
+		} else {
+			btn.removeClass(prefix+'_open');
+			btn.addClass(prefix+'_collapsed');
+		}
+		$this._visibilityToggle(mobileNav, true, btn);
+	}
 	
 	// toggle clicked items
 	Plugin.prototype._itemClick = function(el) {
@@ -275,7 +284,6 @@
 
 	// get all 1st level items that are clickable
 	Plugin.prototype._getActionItems = function(el) {
-		var $this = this;
 		var data = el.data("menu");
 		if (!data) {
 			data = {};
@@ -288,7 +296,6 @@
 	}
 
 	Plugin.prototype._outlines = function(state) {
-		var $this = this;
 		if (!state) {
 			$('.'+prefix+'_item, .'+prefix+'_btn').css('outline','none');
 		} else {
@@ -297,35 +304,20 @@
 	}
 	
 	Plugin.prototype.toggle = function(){
-		var $this = this;
-		var el = $this.btn;
-		if (el.hasClass(prefix+'_collapsed')) {
-			el.removeClass(prefix+'_collapsed');
-			el.addClass(prefix+'_open');
-		} else {
-			el.removeClass(prefix+'_open');
-			el.addClass(prefix+'_collapsed');
-		}
-		$this._visibilityToggle($this.mobileNav, true, el);
+		$this._menuToggle();
 	}
 	
 	Plugin.prototype.open = function(){
-		var $this = this;
-		var el = $this.btn;
-		if (el.hasClass(prefix+'_collapsed')) {
-			el.removeClass(prefix+'_collapsed');
-			el.addClass(prefix+'_open');
-			$this._visibilityToggle($this.mobileNav, true, el);
+		$this = this;
+		if ($this.btn.hasClass(prefix+'_collapsed')) {
+			$this._menuToggle();
 		}
 	}
 	
 	Plugin.prototype.close = function(){
-		var $this = this;
-		var el = $this.btn;
-		if (el.hasClass(prefix+'_open')) {
-			el.removeClass(prefix+'_open');
-			el.addClass(prefix+'_collapsed');
-			$this._visibilityToggle($this.mobileNav, true, el);
+		$this = this;
+		if ($this.btn.hasClass(prefix+'_open')) {
+			$this._menuToggle();
 		}
 	}
 	
