@@ -145,8 +145,7 @@
 		// menu button click
 		$($this.btn).click(function (e) {
 			e.preventDefault();
-			$this._menuToggle();
-			
+			$this._menuToggle();			
 		});
 		
 		// click on menu parent
@@ -193,6 +192,7 @@
 			btn.removeClass(prefix+'_open');
 			btn.addClass(prefix+'_collapsed');
 		}
+		btn.addClass(prefix+'_animating');
 		$this._visibilityToggle(mobileNav, true, btn);
 	}
 	
@@ -212,11 +212,13 @@
 			data.arrow.html(settings.openedSymbol);
 			data.parent.removeClass(prefix+'_collapsed');
 			data.parent.addClass(prefix+'_open');
+			data.parent.addClass(prefix+'_animating');
 			$this._visibilityToggle(data.ul, true, el);
 		} else {
 			data.arrow.html(settings.closedSymbol);
 			data.parent.addClass(prefix+'_collapsed');
 			data.parent.removeClass(prefix+'_open');
+			data.parent.addClass(prefix+'_animating');
 			$this._visibilityToggle(data.ul, true, el);
 		}
 	}
@@ -233,6 +235,11 @@
 		if (el.hasClass(prefix+'_hidden')) {
 			el.removeClass(prefix+'_hidden');
 			el.slideDown(duration, settings.easingOpen, function(){
+				
+				$(trigger).removeClass(prefix+'_animating');
+				$(trigger).parent().removeClass(prefix+'_animating');
+				
+				//Fire open callback
 				if (!init) {
 					settings.open(trigger);
 				}
@@ -247,6 +254,11 @@
 				items.attr('tabindex', '-1');
 				$this._setVisAttr(el, true);
 				el.hide(); //jQuery 1.7 bug fix
+				
+				$(trigger).removeClass(prefix+'_animating');
+				$(trigger).parent().removeClass(prefix+'_animating');
+				
+				//Fire init or close callback
 				if (!init)
 					settings.close(trigger);
 				else if (trigger == 'init')
