@@ -1,0 +1,21 @@
+{
+  "name": "slicknav",
+  "version": "1.0.0",
+  "authors": [
+    "ComputerWolf"
+  ],
+  "main": [
+    "jquery.slicknav.js",
+    "slicknav.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.0"
+  }
+}
