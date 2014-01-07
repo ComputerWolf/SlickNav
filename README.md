@@ -14,10 +14,11 @@
 * * *
 ### Usage
 
-####Include the CSS
+####Include the CSS & JS
 slicknav.css can be modified to fit website design
 
     <link rel="stylesheet" href="SlickNav/slicknav.css" />
+	<script src="jquery.slicknav.min.js"></script>
 
 ####Menu Markup
 
