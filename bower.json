@@ -2,7 +2,7 @@
   "name": "slicknav",
   "version": "1.0.0",
   "authors": [
-    "ComputerWolf"
+    "Josh Cope"
   ],
   "main": [
     "jquery.slicknav.js",
