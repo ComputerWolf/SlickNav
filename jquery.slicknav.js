@@ -1,6 +1,6 @@
 /*!
 	SlickNav Responsive Mobile Menu
-	(c) 2013 Josh Cope
+	(c) 2014 Josh Cope
 	licensed under GPL and MIT
 */
 ;(function ($, document, window) {
