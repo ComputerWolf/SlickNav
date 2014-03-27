@@ -114,11 +114,20 @@
 			}
 			
 			// accessibility for links
-			item.children('a').attr('role', 'menuitem').click(function(){
+			item.children('a').attr('role', 'menuitem').click(function(event){
 				//Emulate menu close if set
-				if (settings.closeOnClick)
+                //Ensure that it's not a parent
+				if (settings.closeOnClick && !$(event.target).parent().closest('li').hasClass(prefix+'_parent'))
 					$($this.btn).click();
 			});
+            
+            //also close on click if parent links are set
+            if (settings.closeOnClick && settings.allowParentLinks) {
+                item.children('a').children('a').click(function(event){
+                    //Emulate menu close
+                        $($this.btn).click();
+                });
+            }
 		});
 		
 		// structure is in place, now hide appropriate items
