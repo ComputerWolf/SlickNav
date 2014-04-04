@@ -20,6 +20,11 @@ slicknav.css can be modified to fit website design
     <link rel="stylesheet" href="SlickNav/slicknav.css" />
 	<script src="SlickNav/jquery.slicknav.min.js"></script>
 
+####Optional CDN Support
+
+    <link rel="stylesheet" href="//oss.maxcdn.com/jquery.slicknav/0.1.0/slicknav.css" />
+	<script src="//oss.maxcdn.com/jquery.slicknav/0.1.0/jquery.slicknav.min.js "></script>
+
 ####Menu Markup
 
     <ul id="menu">
