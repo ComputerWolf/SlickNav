@@ -325,6 +325,7 @@
 	}
 	
 	Plugin.prototype.toggle = function(){
+        $this = this;
 		$this._menuToggle();
 	}
 	
