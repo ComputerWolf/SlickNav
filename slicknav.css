@@ -29,74 +29,74 @@
 */
 
 .slicknav_menu {
-	font-size:16px;
+    font-size:16px;
 }
 /* Button */
 .slicknav_btn {
-	margin: 5px 5px 6px;	
-	text-decoration:none;	
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);	
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;  
-	background-color: #222222;
+    margin: 5px 5px 6px;
+    text-decoration:none;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;  
+    background-color: #222222;
 }
 /* Button Text */
-.slicknav_menu  .slicknav_menutxt {	
-	color: #FFF;
-	font-weight: bold;	
-	text-shadow: 0 1px 3px #000;	
+.slicknav_menu  .slicknav_menutxt {
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 1px 3px #000;
 }
 /* Button Lines */
 .slicknav_menu .slicknav_icon-bar {
   background-color: #f5f5f5;
 }
 .slicknav_menu {
-	background:#4c4c4c;
-	padding:5px;
+    background:#4c4c4c;
+    padding:5px;
 }
 .slicknav_nav {
-	color:#fff;
-	margin:0;	
-	padding:0;
-	font-size:0.875em;
+    color:#fff;
+    margin:0;
+    padding:0;
+    font-size:0.875em;
 }
 .slicknav_nav, .slicknav_nav ul {
-	list-style: none;
-	overflow:hidden;
+    list-style: none;
+    overflow:hidden;
 }
 .slicknav_nav ul {
-	padding:0;
-	margin:0 0 0 20px;
+    padding:0;
+    margin:0 0 0 20px;
 }
 .slicknav_nav .slicknav_row {
-	padding:5px 10px;
-	margin:2px 5px;
+    padding:5px 10px;
+    margin:2px 5px;
 }
 .slicknav_nav a{
-	padding:5px 10px;
-	margin:2px 5px;
-	text-decoration:none;
-	color:#fff;
+    padding:5px 10px;
+    margin:2px 5px;
+    text-decoration:none;
+    color:#fff;
 }
 .slicknav_nav .slicknav_item a,
 .slicknav_nav .slicknav_parent-link a {
-	padding:0;
-	margin:0;
+    padding:0;
+    margin:0;
 }
 .slicknav_nav .slicknav_row:hover {
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	background:#ccc;
-	color:#fff;	
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background:#ccc;
+    color:#fff;
 }
 .slicknav_nav a:hover{
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	background:#ccc;
-	color:#222;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background:#ccc;
+    color:#222;
 }
 .slicknav_nav .slicknav_txtnode {
      margin-left:15px;   
