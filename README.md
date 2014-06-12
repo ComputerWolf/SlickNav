@@ -49,6 +49,7 @@ slicknav.css can be modified to fit website design
     'closeOnClick': false, // Close menu when a link is clicked.
     'allowParentLinks': false // Allow clickable links as parent elements.
     'nestedParentLinks': true // If false, parent links will be separated from the sub-menu toggle.
+    'showChildren': false // Show children of parent links by default.
     
 ### Callbacks
     'init': function(){}, // Called after SlickNav creation
