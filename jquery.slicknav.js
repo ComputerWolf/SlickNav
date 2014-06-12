@@ -19,6 +19,7 @@
 		closeOnClick: false,
 		allowParentLinks: false,
         nestedParentLinks: true,
+		showChildren: false,
 		init: function(){},
 		open: function(){},
 		close: function(){}
@@ -159,7 +160,9 @@
 		// structure is in place, now hide appropriate items
 		$(items).each(function () {
 			var data = $(this).data("menu");
-			$this._visibilityToggle(data.children, null, false, null, true);
+			if (!settings.showChildren){
+				$this._visibilityToggle(data.children, null, false, null, true);
+			}
 		});
 		
 		// finally toggle entire menu
@@ -179,8 +182,9 @@
 		
 		// menu button click
 		$($this.btn).click(function (e) {
-			e.preventDefault();
-			$this._menuToggle();			
+			e.preventDefault();		
+			$this._menuToggle();	
+			
 		});
 		
 		// click on menu parent
