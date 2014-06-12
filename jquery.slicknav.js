@@ -18,6 +18,7 @@
 		parentTag: 'a',
 		closeOnClick: false,
 		allowParentLinks: false,
+        nestedParentLinks: true,
 		init: function(){},
 		open: function(){},
 		close: function(){}
@@ -88,7 +89,11 @@
 			if (data.children.length > 0) {
 			
 				// select all text before the child menu
+                // check for anchors
+                
 				var a = item.contents();
+                var containsAnchor = false;
+                
 				var nodes = [];
 				$(a).each(function(){
 					if(!$(this).is("ul")) {
@@ -97,16 +102,32 @@
 					else {
 						return false;
 					}
+                    
+                    if($(this).is("a")) {
+						containsAnchor = true;
+					}
 				});
 				
-				// wrap item text with tag and add classes
-				var wrap = $(nodes).wrapAll('<'+settings.parentTag+' role="menuitem" aria-haspopup="true" tabindex="-1" class="'+prefix+'_item"/>').parent();
-				
+                var wrapElement = $('<'+settings.parentTag+' role="menuitem" aria-haspopup="true" tabindex="-1" class="'+prefix+'_item"/>');
+                
+				// wrap item text with tag and add classes unless we are separating parent links
+                if ((!settings.allowParentLinks || settings.nestedParentLinks) || !containsAnchor) {
+                    $wrap = $(nodes).wrapAll(wrapElement).parent();
+                    $wrap.addClass(prefix+'_row');
+                } else
+                    $(nodes).wrapAll('<span class="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
+                
 				item.addClass(prefix+'_collapsed');
 				item.addClass(prefix+'_parent');
 				
-				// create parent arrow
-				$(nodes).last().after('<span class="'+prefix+'_arrow">'+settings.closedSymbol+'</span>');
+				// create parent arrow. wrap with link if parent links and separating
+                var arrowElement = $('<span class="'+prefix+'_arrow">'+settings.closedSymbol+'</span>');
+                
+                if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
+                    arrowElement = arrowElement.wrap(wrapElement).parent();
+                
+                //append arrow
+                $(nodes).last().after(arrowElement);
 				
 			
 			} else if ( item.children().length == 0) {
@@ -127,17 +148,22 @@
                     //Emulate menu close
                         $($this.btn).click();
                 });
+                
+                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(event){
+                    //Emulate menu close
+                        $($this.btn).click();
+                });
             }
 		});
 		
 		// structure is in place, now hide appropriate items
 		$(items).each(function () {
 			var data = $(this).data("menu");
-			$this._visibilityToggle(data.children, false, null, true);
+			$this._visibilityToggle(data.children, null, false, null, true);
 		});
 		
 		// finally toggle entire menu
-		$this._visibilityToggle($this.mobileNav, false, 'init', true);
+		$this._visibilityToggle($this.mobileNav, null, false, 'init', true);
 		
 		// accessibility for menu button
 		$this.mobileNav.attr('role','menu');
@@ -181,7 +207,7 @@
 		});
 		
 		// allow links clickable within parent tags if set
-		if (settings.allowParentLinks) {
+		if (settings.allowParentLinks && settings.nestedParentLinks) {
 			$('.'+prefix+'_item a').click(function(e){
 					e.stopImmediatePropagation();
 			});
@@ -202,7 +228,7 @@
 			btn.addClass(prefix+'_collapsed');
 		}
 		btn.addClass(prefix+'_animating');
-		$this._visibilityToggle(mobileNav, true, btn);
+		$this._visibilityToggle(mobileNav, btn.parent(), true, btn);
 	}
 	
 	// toggle clicked items
@@ -215,6 +241,11 @@
 			data.arrow = el.children('.'+prefix+'_arrow');
 			data.ul = el.next('ul');
 			data.parent = el.parent();
+            //Separated parent link structure
+            if (data.parent.hasClass(prefix+'_parent-link')) {
+                data.parent = el.parent().parent();
+                data.ul = el.parent().next('ul');
+            }
 			el.data("menu", data);
 		}
 		if (data.parent.hasClass(prefix+'_collapsed')) {
@@ -222,18 +253,18 @@
 			data.parent.removeClass(prefix+'_collapsed');
 			data.parent.addClass(prefix+'_open');
 			data.parent.addClass(prefix+'_animating');
-			$this._visibilityToggle(data.ul, true, el);
+			$this._visibilityToggle(data.ul, data.parent, true, el);
 		} else {
 			data.arrow.html(settings.closedSymbol);
 			data.parent.addClass(prefix+'_collapsed');
 			data.parent.removeClass(prefix+'_open');
 			data.parent.addClass(prefix+'_animating');
-			$this._visibilityToggle(data.ul, true, el);
+			$this._visibilityToggle(data.ul, data.parent, true, el);
 		}
 	}
 
 	// toggle actual visibility and accessibility tags
-	Plugin.prototype._visibilityToggle = function(el, animate, trigger, init) {
+	Plugin.prototype._visibilityToggle = function(el, parent, animate, trigger, init) {
 		var $this = this;
 		var settings = $this.settings;
 		var items = $this._getActionItems(el);
@@ -246,7 +277,7 @@
 			el.slideDown(duration, settings.easingOpen, function(){
 				
 				$(trigger).removeClass(prefix+'_animating');
-				$(trigger).parent().removeClass(prefix+'_animating');
+				$(parent).removeClass(prefix+'_animating');
 				
 				//Fire open callback
 				if (!init) {
@@ -265,7 +296,7 @@
 				el.hide(); //jQuery 1.7 bug fix
 				
 				$(trigger).removeClass(prefix+'_animating');
-				$(trigger).parent().removeClass(prefix+'_animating');
+				$(parent).removeClass(prefix+'_animating');
 				
 				//Fire init or close callback
 				if (!init)
@@ -309,8 +340,8 @@
 		if (!data) {
 			data = {};
 			var items = el.children('li');
-			var anchors = items.children('a');
-			data.links = anchors.add(items.children('.'+prefix+'_item'));
+			var anchors = items.find('a');
+			data.links = anchors.add(items.find('.'+prefix+'_item'));
 			el.data("menu", data);
 		}
 		return data.links;
