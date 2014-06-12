@@ -48,6 +48,7 @@ slicknav.css can be modified to fit website design
 	'parentTag': 'a', // Element type for parent menu items.
 	'closeOnClick': false, // Close menu when a link is clicked.
 	'allowParentLinks': false // Allow clickable links as parent elements.
+    'nestedParentLinks': true // If false, parent links will be separated from the sub-menu toggle.
 	
 ### Callbacks
 	'init': function(){}, // Called after SlickNav creation
