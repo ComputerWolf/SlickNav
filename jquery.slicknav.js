@@ -18,7 +18,7 @@
 		parentTag: 'a',
 		closeOnClick: false,
 		allowParentLinks: false,
-        nestedParentLinks: true,
+        	nestedParentLinks: true,
 		showChildren: false,
 		init: function(){},
 		open: function(){},
