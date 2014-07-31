@@ -1,5 +1,5 @@
 /*!
-    SlickNav Responsive Mobile Menu
+    SlickNav Responsive Mobile Menu v1.0.0
     (c) 2014 Josh Cope
     licensed under MIT
 */
