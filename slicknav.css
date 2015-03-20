@@ -17,7 +17,7 @@
 .slicknav_nav a { display: block }
 .slicknav_nav .slicknav_item a,
 .slicknav_nav .slicknav_parent-link a { display: inline }
-.slicknav_nav .slicknav_brand { float:left }
+.slicknav_brand { float:left }
 .slicknav_menu:before,
 .slicknav_menu:after { content: " "; display: table; }
 .slicknav_menu:after { clear: both }
