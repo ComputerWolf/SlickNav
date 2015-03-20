@@ -1,4 +1,4 @@
-# SlickNav v1.0.1
+# SlickNav v1.0.2
 ## Responsive Mobile Menu jQuery Plugin
 
 ###[SlickNav.com](http://slicknav.com)
@@ -50,6 +50,7 @@ slicknav.css can be modified to fit website design
     'allowParentLinks': false // Allow clickable links as parent elements.
     'nestedParentLinks': true // If false, parent links will be separated from the sub-menu toggle.
     'showChildren': false // Show children of parent links by default.
+	'brand': '' // Add branding to menu bar.
     
 ### Callbacks
     'init': function(){}, // Called after SlickNav creation
