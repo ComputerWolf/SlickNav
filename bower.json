@@ -1,12 +1,12 @@
 {
   "name": "slicknav",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     "Josh Cope"
   ],
   "main": [
-    "jquery.slicknav.js",
-    "slicknav.css"
+    "dist/jquery.slicknav.js",
+    "dist/slicknav.css"
   ],
   "ignore": [
     "**/.*",
