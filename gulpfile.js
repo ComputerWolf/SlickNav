@@ -25,4 +25,4 @@ gulp.task('js', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['sass','js','watch']);
+gulp.task('default', ['sass','js']);
