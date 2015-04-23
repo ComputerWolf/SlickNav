@@ -1,0 +1,41 @@
+{
+  "version": "1.0.2",
+  "name": "slicknav",
+  "description": "",
+  "keywords": [
+    "slicknav",
+    "menu",
+    "css",
+    "sass",
+    "scss",
+    "jquery",
+    "javascript",
+    "component",
+    "responsive",
+    "mobile"
+  ],
+  "copyright": "Copyright 2015",
+  "homepage": "http://slicknav.com",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/titon/toolkit/blob/master/license.md"
+    }
+  ],
+  "author": {
+    "name": "Josh Cope"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ComputerWolf/SlickNav"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-header": "^1.2.2",
+    "gulp-minify-css": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.1",
+    "gulp-uglify": "^1.2.0",
+    "jquery": "~1.7"
+  }
+}

@@ -1,8 +1,8 @@
 /*!
-    SlickNav Responsive Mobile Menu v1.0.2
-    (c) 2015 Josh Cope
-    licensed under MIT
-*/
+ * SlickNav Responsive Mobile Menu v1.0.2
+ * (c) 2015 [object Object]
+ * licensed under MIT
+ */
 ;(function ($, document, window) {
     var
     // default settings object.
@@ -20,6 +20,8 @@
             allowParentLinks: false,
             nestedParentLinks: true,
             showChildren: false,
+            removeIds: false,
+            removeClasses: false,
 			brand: '',
             init: function () {},
             open: function () {},
@@ -60,6 +62,20 @@
             });
         } else {
             $this.mobileNav = menu;
+            
+            // remove ids if set
+            $this.mobileNav.removeAttr('id');
+            $this.mobileNav.find('*').each(function (i, e) {
+                $(e).removeAttr('id');
+            });
+        }
+        
+        // remove classes if set
+        if (settings.removeClasses) {
+            $this.mobileNav.removeAttr('class');
+            $this.mobileNav.find('*').each(function (i, e) {
+                $(e).removeAttr('class');
+            });
         }
 
         // styling class for the button
