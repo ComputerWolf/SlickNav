@@ -1,5 +1,5 @@
 /*!
-    SlickNav Responsive Mobile Menu v1.0.2
+    SlickNav Responsive Mobile Menu v1.0.3
     (c) 2015 Josh Cope
     licensed under MIT
 */
@@ -22,8 +22,10 @@
             showChildren: false,
 			brand: '',
             init: function () {},
-            open: function () {},
-            close: function () {}
+            beforeOpen: function () {},
+            beforeClose: function () {},
+            afterOpen: function () {},
+            afterClose: function () {}
         },
         mobileMenu = 'slicknav',
         prefix = 'slicknav';
@@ -297,14 +299,18 @@
 
         if (el.hasClass(prefix+'_hidden')) {
             el.removeClass(prefix+'_hidden');
+             //Fire beforeOpen callback
+                if (!init) {
+                    settings.beforeOpen(trigger);
+                }
             el.slideDown(duration, settings.easingOpen, function(){
 
                 $(trigger).removeClass(prefix+'_animating');
                 $(parent).removeClass(prefix+'_animating');
 
-                //Fire open callback
+                //Fire afterOpen callback
                 if (!init) {
-                    settings.open(trigger);
+                    settings.afterOpen(trigger);
                 }
             });
             el.attr('aria-hidden','false');
@@ -312,18 +318,26 @@
             $this._setVisAttr(el, false);
         } else {
             el.addClass(prefix+'_hidden');
+            	
+            //Fire init or beforeClose callback
+            if (!init){
+                settings.beforeClose(trigger);
+            }else if (trigger == 'init'){
+                settings.init();
+            }
+            
             el.slideUp(duration, this.settings.easingClose, function() {
                 el.attr('aria-hidden','true');
                 items.attr('tabindex', '-1');
                 $this._setVisAttr(el, true);
                 el.hide(); //jQuery 1.7 bug fix
-
+                
                 $(trigger).removeClass(prefix+'_animating');
                 $(parent).removeClass(prefix+'_animating');
 
-                //Fire init or close callback
+                //Fire init or afterClose callback
                 if (!init){
-                    settings.close(trigger);
+                    settings.afterClose(trigger);
                 }
                 else if (trigger == 'init'){
                     settings.init();
