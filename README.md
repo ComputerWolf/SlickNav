@@ -17,8 +17,8 @@
 ####Include the CSS & JS
 slicknav.css can be modified to fit website design
 
-    <link rel="stylesheet" href="SlickNav/slicknav.css" />
-    <script src="SlickNav/jquery.slicknav.min.js"></script>
+    <link rel="stylesheet" href="SlickNav/dist/slicknav.min.css" />
+    <script src="SlickNav/dist/jquery.slicknav.min.js"></script>
 
 ####Menu Markup
 
