@@ -54,8 +54,10 @@ slicknav.css can be modified to fit website design
     
 ### Callbacks
     'init': function(){}, // Called after SlickNav creation
-    'open': function(trigger){}, // Called after menu or sub-menu opened. 
-    'close': function(trigger){} // Called after menu or sub-menu closed.
+    'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened. 
+    'beforeClose': function(trigger){} // Called before menu or sub-menu closed.
+    'afterOpen': function(trigger){} // Called after menu or sub-menu opened.
+    'afterClose': function(trigger){} // Called after menu or sub-menu closed.
 
 ### Methods
     $('.menu').slicknav('toggle'); // Method to toggle the menu
