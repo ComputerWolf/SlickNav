@@ -7,7 +7,7 @@ var pkg = require('./package.json'),
     minify = require('gulp-minify-css');
     banner = ['/*!',
             ' * SlickNav Responsive Mobile Menu v<%= pkg.version %>',
-            ' * (c) <%= new Date().getFullYear() %> <%= pkg.author %>',
+            ' * (c) <%= new Date().getFullYear() %> <%= pkg.author.name %>',
             ' * licensed under <%= pkg.licenses[0].type %>',
             ' */',
             ''].join('\n');
