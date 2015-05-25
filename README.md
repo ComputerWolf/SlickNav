@@ -53,10 +53,10 @@ slicknav.css can be modified to fit website design
     'removeIds': false // Remove IDs from all menu elements. Defaults to true if duplicate is true.
     'removeClasses': false // Remove classes from all menu elements.
 	'brand': '' // Add branding to menu bar.
-    
+
 ### Callbacks
     'init': function(){}, // Called after SlickNav creation
-    'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened. 
+    'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened.
     'beforeClose': function(trigger){} // Called before menu or sub-menu closed.
     'afterOpen': function(trigger){} // Called after menu or sub-menu opened.
     'afterClose': function(trigger){} // Called after menu or sub-menu closed.
@@ -65,7 +65,7 @@ slicknav.css can be modified to fit website design
     $('.menu').slicknav('toggle'); // Method to toggle the menu
     $('.menu').slicknav('open'); // Method to open the menu
     $('.menu').slicknav('close'); // Method to close the menu
-    
+
 Without any additional configuration, both the original and mobile menus will be displayed. It is recommended to use media queries to hide the original menu and display the mobile menu when appropriate. Modernizr or similar can be used for graceful degradation.
 
 For example:
@@ -73,17 +73,38 @@ For example:
     .slicknav_menu {
         display:none;
     }
-    
+
     @media screen and (max-width: 40em) {
         /* #menu is the original menu */
         .js #menu {
             display:none;
         }
-        
+
         .js .slicknav_menu {
             display:block;
         }
     }
+
+###Modifying the Theme With Sass
+scss/theme.scss can also be modified to fit your website's design. Import the
+scss directory into your project and simply use the command line to have Sass watch for the changes made.
+
+    sass --watch scss/slicknav.scss:<directory where you placed SlickNav>/slicknav.css
+
+Now change the colors in theme.scss and the changes will be reflected in slicknav.css.
+
+For example:
+
+    //colors
+    $color_0: rgba(255, 255, 255, 0.75);
+    $color_btn: deepskyblue;
+    $color_text: white;
+    $color_bg: dodgerblue;
+    $color_shadow: darken($color_bg, 10%);
+    $color_hover_bg: $color_btn;
+    $color_hover_text: white;
+
+
 
 More examples at [SlickNav.com](http://slicknav.com)
 
