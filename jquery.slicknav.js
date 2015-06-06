@@ -123,7 +123,7 @@
                 // check for anchors
 
                 var a = item.contents(),
-                    containsAnchor = false;
+                    containsAnchor = false,
                     nodes = [];
 
                 $(a).each(function () {
