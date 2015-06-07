@@ -1,4 +1,4 @@
-# SlickNav v1.0.3
+# SlickNav v1.0.4
 ## Responsive Mobile Menu jQuery Plugin
 
 ###[SlickNav.com](http://slicknav.com)

@@ -1,5 +1,5 @@
 /*!
- * SlickNav Responsive Mobile Menu v1.0.3
+ * SlickNav Responsive Mobile Menu v1.0.4
  * (c) 2015 Josh Cope
  * licensed under MIT
  */
@@ -128,7 +128,7 @@
                 // check for anchors
 
                 var a = item.contents(),
-                    containsAnchor = false;
+                    containsAnchor = false,
                     nodes = [];
 
                 $(a).each(function () {
@@ -154,11 +154,16 @@
                 } else
                     $(nodes).wrapAll('<span class="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
 
-                item.addClass(prefix+'_collapsed');
+                if (!settings.showChildren) {
+                    item.addClass(prefix+'_collapsed');
+                } else {
+                    item.addClass(prefix+'_open');
+                }
+                
                 item.addClass(prefix+'_parent');
 
                 // create parent arrow. wrap with link if parent links and separating
-                var arrowElement = $('<span class="'+prefix+'_arrow">'+settings.closedSymbol+'</span>');
+                var arrowElement = $('<span class="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
 
                 if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
                     arrowElement = arrowElement.wrap(wrapElement).parent();
