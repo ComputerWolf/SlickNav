@@ -1,7 +1,7 @@
 var pkg = require('./package.json'),
     gulp = require('gulp'),
     header = require('gulp-header'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     minify = require('gulp-minify-css');
