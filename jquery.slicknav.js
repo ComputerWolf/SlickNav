@@ -59,14 +59,14 @@
             });
         } else {
             $this.mobileNav = menu;
-            
+
             // remove ids if set
             $this.mobileNav.removeAttr('id');
             $this.mobileNav.find('*').each(function (i, e) {
                 $(e).removeAttr('id');
             });
         }
-        
+
         // remove classes if set
         if (settings.removeClasses) {
             $this.mobileNav.removeAttr('class');
@@ -154,7 +154,7 @@
                 } else {
                     item.addClass(prefix+'_open');
                 }
-                
+
                 item.addClass(prefix+'_parent');
 
                 // create parent arrow. wrap with link if parent links and separating
@@ -334,28 +334,25 @@
             $this._setVisAttr(el, false);
         } else {
             el.addClass(prefix+'_hidden');
-            	
+
             //Fire init or beforeClose callback
             if (!init){
                 settings.beforeClose(trigger);
-            }else if (trigger == 'init'){
-                settings.init();
             }
-            
+
             el.slideUp(duration, this.settings.easingClose, function() {
                 el.attr('aria-hidden','true');
                 items.attr('tabindex', '-1');
                 $this._setVisAttr(el, true);
                 el.hide(); //jQuery 1.7 bug fix
-                
+
                 $(trigger).removeClass(prefix+'_animating');
                 $(parent).removeClass(prefix+'_animating');
 
                 //Fire init or afterClose callback
                 if (!init){
                     settings.afterClose(trigger);
-                }
-                else if (trigger == 'init'){
+                } else if (trigger == 'init'){
                     settings.init();
                 }
             });
