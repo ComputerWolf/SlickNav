@@ -45,6 +45,7 @@ slicknav.css can be modified to fit website design
     'closedSymbol': '&#9658;', // Character after collapsed parents.
     'openedSymbol': '&#9660;', // Character after expanded parents.
     'prependTo': 'body', // Element, jQuery object, or jQuery selector string to prepend the mobile menu to.
+    'appendTo': '', // Element, jQuery object, or jQuery selector string to append the mobile menu to. Takes precedence over prependTo.
     'parentTag': 'a', // Element type for parent menu items.
     'closeOnClick': false, // Close menu when a link is clicked.
     'allowParentLinks': false // Allow clickable links as parent elements.
