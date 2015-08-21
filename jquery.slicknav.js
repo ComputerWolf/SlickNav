@@ -10,6 +10,7 @@
             closedSymbol: '&#9658;',
             openedSymbol: '&#9660;',
             prependTo: 'body',
+            appendTo: '',
             parentTag: 'a',
             closeOnClick: false,
             allowParentLinks: false,
@@ -105,7 +106,11 @@
             ].join('')
         );
         $(menuBar).append($this.btn);
-        $(settings.prependTo).prepend(menuBar);
+        if(settings.appendTo !== '') {
+            $(settings.appendTo).append(menuBar);
+        } else {
+            $(settings.prependTo).prepend(menuBar);
+        }
         menuBar.append($this.mobileNav);
 
         // iterate over structure adding additional structure
