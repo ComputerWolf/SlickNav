@@ -23,6 +23,7 @@
             showChildren: false,
             removeIds: false,
             removeClasses: false,
+            removeStyles: false,
 			brand: '',
             init: function () {},
             beforeOpen: function () {},
@@ -78,6 +79,14 @@
             $this.mobileNav.removeAttr('class');
             $this.mobileNav.find('*').each(function (i, e) {
                 $(e).removeAttr('class');
+            });
+        }
+        
+        // remove styles if set
+        if (settings.removeStyles) {
+            $this.mobileNav.removeAttr('style');
+            $this.mobileNav.find('*').each(function (i, e) {
+                $(e).removeAttr('style');
             });
         }
 
