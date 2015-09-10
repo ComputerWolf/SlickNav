@@ -18,6 +18,7 @@
             showChildren: false,
             removeIds: false,
             removeClasses: false,
+            merge: false,
 			brand: '',
             init: function () {},
             beforeOpen: function () {},
@@ -432,11 +433,18 @@
     };
 
     $.fn[mobileMenu] = function ( options ) {
-        var args = arguments;
+	var args = arguments, elements = this;
+
+        // Merge all possible source menu into a single menu
+        if (options && options.merge) {
+          var target = elements.first().clone();
+          target.append(elements.not(':first').children().clone());
+          elements = target;
+        }
 
         // Is the first parameter an object (options), or was omitted, instantiate a new instance
         if (options === undefined || typeof options === 'object') {
-            return this.each(function () {
+            return elements.each(function () {
 
                 // Only allow the plugin to be instantiated once due to methods
                 if (!$.data(this, 'plugin_' + mobileMenu)) {
@@ -453,7 +461,7 @@
             // Cache the method call to make it possible to return a value
             var returns;
 
-            this.each(function () {
+            elements.each(function () {
                 var instance = $.data(this, 'plugin_' + mobileMenu);
 
                 // Tests that there's already a plugin-instance and checks that the requested public method exists
