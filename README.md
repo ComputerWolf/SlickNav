@@ -79,11 +79,11 @@ For example:
     
     @media screen and (max-width: 40em) {
         /* #menu is the original menu */
-        .js #menu {
+        .js, #menu {
             display:none;
         }
         
-        .js .slicknav_menu {
+        .js, .slicknav_menu {
             display:block;
         }
     }
