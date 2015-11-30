@@ -1,5 +1,5 @@
 /*!
- * SlickNav Responsive Mobile Menu v1.0.3
+ * SlickNav Responsive Mobile Menu v1.0.5
  * (c) 2015 Josh Cope
  * licensed under MIT
  */
@@ -22,6 +22,8 @@
     float: left; }
   .slicknav_menu .slicknav_icon {
     float: left;
+    width: 1.125em;
+    height: 0.875em;
     margin: 0.188em 0 0 0.438em; }
   .slicknav_menu .slicknav_no-text {
     margin: 0; }

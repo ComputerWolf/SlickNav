@@ -4,7 +4,8 @@ var pkg = require('./package.json'),
     sass = require('gulp-sass'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    minify = require('gulp-minify-css');
+    minify = require('gulp-minify-css'),
+    plumber = require('gulp-plumber'),
     banner = ['/*!',
             ' * SlickNav Responsive Mobile Menu v<%= pkg.version %>',
             ' * (c) <%= new Date().getFullYear() %> <%= pkg.author.name %>',
@@ -13,8 +14,9 @@ var pkg = require('./package.json'),
             ''].join('\n');
 
 gulp.task('sass', function() {
-  return sass('scss/slicknav.scss')
-  .on('error', function(err) { console.error('Error!', err.message); })
+  gulp.src('scss/slicknav.scss')
+  .pipe(plumber())
+  .pipe(sass())
   .pipe(header(banner, { pkg : pkg } ))
   .pipe(gulp.dest('dist'))
   .pipe(minify({compatibility: 'ie8'}))
@@ -28,6 +30,7 @@ gulp.task('watch', function() {
 
 gulp.task('js', function() {
   return gulp.src('jquery.slicknav.js')
+    .pipe(plumber())
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest('dist'))
     .pipe(uglify({preserveComments: 'some'}))
