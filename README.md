@@ -1,4 +1,5 @@
 # SlickNav v1.0.7
+
 ## Responsive Mobile Menu jQuery Plugin
 
 [![Join the chat at https://gitter.im/ComputerWolf/SlickNav](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ComputerWolf/SlickNav?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -6,6 +7,7 @@
 ###[SlickNav.com](http://slicknav.com)
 
 ### Features
+
 * Multi-level menu support
 * Flexible, simple markup
 * Cross-browser compatibility
@@ -17,6 +19,7 @@
 ### Usage
 
 ####Include the CSS & JS
+
 slicknav.css can be modified to fit website design
 
     <link rel="stylesheet" href="SlickNav/dist/slicknav.min.css" />
@@ -30,6 +33,7 @@ slicknav.css can be modified to fit website design
         <li><a href="#">item 3</a></li>
         <li><a href="#">item 4</a></li>
     </ul>
+
 ####Initialize
 
     <script>
@@ -39,6 +43,7 @@ slicknav.css can be modified to fit website design
     </script>
 
 ### Options
+
     'label' : 'MENU', // Label for menu button. Use an empty string for no label.
     'duplicate': true, // If true, the mobile menu is a copy of the original.
     'duration': true, // The duration of the sliding animation.
@@ -55,9 +60,10 @@ slicknav.css can be modified to fit website design
     'showChildren': false // Show children of parent links by default.
     'removeIds': true // Remove IDs from all menu elements. Defaults to false if duplicate set to false.
     'removeClasses': false // Remove classes from all menu elements.
-	'brand': '' // Add branding to menu bar.
+    'brand': '' // Add branding to menu bar.
 
 ### Callbacks
+
     'init': function(){}, // Called after SlickNav creation
     'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened.
     'beforeClose': function(trigger){} // Called before menu or sub-menu closed.
@@ -65,6 +71,7 @@ slicknav.css can be modified to fit website design
     'afterClose': function(trigger){} // Called after menu or sub-menu closed.
 
 ### Methods
+
     $('.menu').slicknav('toggle'); // Method to toggle the menu
     $('.menu').slicknav('open'); // Method to open the menu
     $('.menu').slicknav('close'); // Method to close the menu
@@ -91,6 +98,7 @@ For example:
 More examples at [SlickNav.com](http://slicknav.com)
 
 ### Browser Support
+
 * Chrome
 * Firefox
 * Safari

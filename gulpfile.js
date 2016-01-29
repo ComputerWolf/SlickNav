@@ -7,11 +7,11 @@ var pkg = require('./package.json'),
     minify = require('gulp-minify-css'),
     plumber = require('gulp-plumber'),
     banner = ['/*!',
-            ' * SlickNav Responsive Mobile Menu v<%= pkg.version %>',
-            ' * (c) <%= new Date().getFullYear() %> <%= pkg.author.name %>',
-            ' * licensed under <%= pkg.licenses[0].type %>',
-            ' */',
-            ''].join('\n');
+              ' * SlickNav Responsive Mobile Menu v<%= pkg.version %>',
+              ' * (c) <%= new Date().getFullYear() %> <%= pkg.author.name %>',
+              ' * licensed under <%= pkg.licenses[0].type %>',
+              ' */',
+              ''].join('\n');
 
 gulp.task('sass', function() {
   gulp.src('scss/slicknav.scss')
@@ -35,7 +35,7 @@ gulp.task('js', function() {
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest('dist'))
     .pipe(uglify({preserveComments: 'some'}))
-	.pipe(rename({suffix: '.min'}))
+    .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist'));
 });
 
