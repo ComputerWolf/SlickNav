@@ -1,4 +1,4 @@
-# SlickNav v1.0.6
+# SlickNav v1.0.7
 ## Responsive Mobile Menu jQuery Plugin
 
 [![Join the chat at https://gitter.im/ComputerWolf/SlickNav](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ComputerWolf/SlickNav?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -53,13 +53,13 @@ slicknav.css can be modified to fit website design
     'allowParentLinks': false // Allow clickable links as parent elements.
     'nestedParentLinks': true // If false, parent links will be separated from the sub-menu toggle.
     'showChildren': false // Show children of parent links by default.
-    'removeIds': false // Remove IDs from all menu elements. Defaults to true if duplicate is true.
+    'removeIds': true // Remove IDs from all menu elements. Defaults to false if duplicate set to false.
     'removeClasses': false // Remove classes from all menu elements.
 	'brand': '' // Add branding to menu bar.
-    
+
 ### Callbacks
     'init': function(){}, // Called after SlickNav creation
-    'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened. 
+    'beforeOpen': function(trigger){}, // Called before menu or sub-menu opened.
     'beforeClose': function(trigger){} // Called before menu or sub-menu closed.
     'afterOpen': function(trigger){} // Called after menu or sub-menu opened.
     'afterClose': function(trigger){} // Called after menu or sub-menu closed.
@@ -68,7 +68,7 @@ slicknav.css can be modified to fit website design
     $('.menu').slicknav('toggle'); // Method to toggle the menu
     $('.menu').slicknav('open'); // Method to open the menu
     $('.menu').slicknav('close'); // Method to close the menu
-    
+
 Without any additional configuration, both the original and mobile menus will be displayed. It is recommended to use media queries to hide the original menu and display the mobile menu when appropriate. Modernizr or similar can be used for graceful degradation.
 
 For example:
@@ -76,13 +76,13 @@ For example:
     .slicknav_menu {
         display:none;
     }
-    
+
     @media screen and (max-width: 40em) {
         /* #menu is the original menu */
         .js #menu {
             display:none;
         }
-        
+
         .js .slicknav_menu {
             display:block;
         }

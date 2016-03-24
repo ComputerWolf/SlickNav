@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "slicknav",
   "description": "",
   "keywords": [
@@ -14,7 +14,7 @@
     "responsive",
     "mobile"
   ],
-  "copyright": "Copyright 2015",
+  "copyright": "Copyright 2016",
   "homepage": "http://slicknav.com",
   "licenses": [
     {

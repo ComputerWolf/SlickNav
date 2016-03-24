@@ -16,7 +16,7 @@
             allowParentLinks: false,
             nestedParentLinks: true,
             showChildren: false,
-            removeIds: false,
+            removeIds: true,
             removeClasses: false,
             removeStyles: false,
 			brand: '',
@@ -38,6 +38,11 @@
         // future instances of the plugin
         this.settings = $.extend({}, defaults, options);
 
+        // Don't remove IDs by default if duplicate is false
+        if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
+          this.settings.removeIds = false;
+        }
+
         this._defaults = defaults;
         this._name = mobileMenu;
 
@@ -54,19 +59,16 @@
         // clone menu if needed
         if (settings.duplicate) {
             $this.mobileNav = menu.clone();
-            //remove ids from clone to prevent css issues
-            $this.mobileNav.removeAttr('id');
-            $this.mobileNav.find('*').each(function (i, e) {
-                $(e).removeAttr('id');
-            });
         } else {
             $this.mobileNav = menu;
+        }
 
-            // remove ids if set
-            $this.mobileNav.removeAttr('id');
-            $this.mobileNav.find('*').each(function (i, e) {
-                $(e).removeAttr('id');
-            });
+        // remove IDs if set
+        if (settings.removeIds) {
+          $this.mobileNav.removeAttr('id');
+          $this.mobileNav.find('*').each(function (i, e) {
+              $(e).removeAttr('id');
+          });
         }
 
         // remove classes if set
@@ -76,7 +78,7 @@
                 $(e).removeAttr('class');
             });
         }
-        
+
         // remove styles if set
         if (settings.removeStyles) {
             $this.mobileNav.removeAttr('style');
