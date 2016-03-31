@@ -88,6 +88,27 @@ For example:
         }
     }
 
+###Modifying the Theme With Sass
+scss/theme.scss can also be modified to fit your website's design. Import the
+scss directory into your project and simply use the command line to have Sass watch for the changes made.
+
+    sass --watch scss/slicknav.scss:<directory where you placed SlickNav>/slicknav.css
+
+Now change the colors in theme.scss and the changes will be reflected in slicknav.css.
+
+For example:
+
+    //colors
+    $color_0: rgba(255, 255, 255, 0.75);
+    $color_btn: deepskyblue;
+    $color_text: white;
+    $color_bg: dodgerblue;
+    $color_shadow: darken($color_bg, 10%);
+    $color_hover_bg: $color_btn;
+    $color_hover_text: white;
+
+
+
 More examples at [SlickNav.com](http://slicknav.com)
 
 ### Browser Support
