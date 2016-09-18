@@ -1,5 +1,5 @@
 /*!
- * SlickNav Responsive Mobile Menu v1.0.7
+ * SlickNav Responsive Mobile Menu v1.0.8
  * (c) 2016 Josh Cope
  * licensed under MIT
  */
@@ -25,6 +25,7 @@
             removeClasses: false,
             removeStyles: false,
 			brand: '',
+            animations: 'jquery',
             init: function () {},
             beforeOpen: function () {},
             beforeClose: function () {},
@@ -333,23 +334,52 @@
         if (animate) {
             duration = settings.duration;
         }
+        
+        function afterOpen(trigger, parent) {
+            $(trigger).removeClass(prefix+'_animating');
+            $(parent).removeClass(prefix+'_animating');
+
+            //Fire afterOpen callback
+            if (!init) {
+                settings.afterOpen(trigger);
+            }
+        }
+        
+        function afterClose(trigger, parent) {
+            el.attr('aria-hidden','true');
+            items.attr('tabindex', '-1');
+            $this._setVisAttr(el, true);
+            el.hide(); //jQuery 1.7 bug fix
+
+            $(trigger).removeClass(prefix+'_animating');
+            $(parent).removeClass(prefix+'_animating');
+
+            //Fire init or afterClose callback
+            if (!init){
+                settings.afterClose(trigger);
+            } else if (trigger == 'init'){
+                settings.init();
+            }
+        }
 
         if (el.hasClass(prefix+'_hidden')) {
             el.removeClass(prefix+'_hidden');
              //Fire beforeOpen callback
-                if (!init) {
-                    settings.beforeOpen(trigger);
-                }
-            el.slideDown(duration, settings.easingOpen, function(){
-
-                $(trigger).removeClass(prefix+'_animating');
-                $(parent).removeClass(prefix+'_animating');
-
-                //Fire afterOpen callback
-                if (!init) {
-                    settings.afterOpen(trigger);
-                }
-            });
+            if (!init) {
+                settings.beforeOpen(trigger);
+            }
+            if (settings.animations === 'jquery') {
+                el.stop(true,true).slideDown(duration, settings.easingOpen, function(){
+                    afterOpen(trigger, parent);
+                });
+            } else if(settings.animations === 'velocity') {
+                el.velocity("finish").velocity("slideDown", {
+                    easing: settings.easingOpen,
+                    complete: function() {
+                        afterOpen(trigger, parent);
+                    }
+                });
+            }
             el.attr('aria-hidden','false');
             items.attr('tabindex', '0');
             $this._setVisAttr(el, false);
@@ -361,22 +391,19 @@
                 settings.beforeClose(trigger);
             }
 
-            el.slideUp(duration, this.settings.easingClose, function() {
-                el.attr('aria-hidden','true');
-                items.attr('tabindex', '-1');
-                $this._setVisAttr(el, true);
-                el.hide(); //jQuery 1.7 bug fix
-
-                $(trigger).removeClass(prefix+'_animating');
-                $(parent).removeClass(prefix+'_animating');
-
-                //Fire init or afterClose callback
-                if (!init){
-                    settings.afterClose(trigger);
-                } else if (trigger == 'init'){
-                    settings.init();
-                }
-            });
+            if (settings.animations === 'jquery') {
+                el.stop(true,true).slideUp(duration, this.settings.easingClose, function() {
+                    afterClose(trigger, parent)
+                });
+            } else if (settings.animations === 'velocity') {
+                
+                el.velocity("finish").velocity("slideUp", {
+                    easing: settings.easingClose,
+                    complete: function() {
+                        afterClose(trigger, parent);
+                    }
+                });
+            }
         }
     };
 
