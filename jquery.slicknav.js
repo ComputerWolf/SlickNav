@@ -30,6 +30,17 @@
         mobileMenu = 'slicknav',
         prefix = 'slicknav';
 
+        Keyboard = {
+            DOWN: 40,
+            ENTER: 13,
+            ESCAPE: 27,
+            LEFT: 37,
+            RIGHT: 39,
+            SPACE: 32,
+            TAB: 9,
+            UP: 38,
+        };
+
     function Plugin(element, options) {
         this.element = element;
 
@@ -107,7 +118,7 @@
 			$(menuBar).append(brand);
 		}
         $this.btn = $(
-            ['<' + settings.parentTag + ' aria-haspopup="true" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
+            ['<' + settings.parentTag + ' aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
                 '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
                 '<span class="' + iconClass + '">',
                     '<span class="' + prefix + '_icon-bar"></span>',
@@ -246,20 +257,82 @@
             $this._itemClick($(this));
         });
 
-        // check for enter key on menu button and menu parents
+        // check for keyboard events on menu button and menu parents
         $($this.btn).keydown(function (e) {
             var ev = e || event;
-            if(ev.keyCode == 13) {
-                e.preventDefault();
-                $this._menuToggle();
+
+            switch(ev.keyCode) {
+                case Keyboard.ENTER:
+                case Keyboard.SPACE:
+                case Keyboard.DOWN:
+                    e.preventDefault();
+                    if (ev.keyCode !== Keyboard.DOWN || !$($this.btn).hasClass(prefix+'_open')){
+                        $this._menuToggle();
+                    }
+                    
+                    $($this.btn).next().find('[role="menuitem"]').first().focus();
+                    break;
             }
+
+            
         });
 
         $this.mobileNav.on('keydown', '.'+prefix+'_item', function(e) {
             var ev = e || event;
-            if(ev.keyCode == 13) {
-                e.preventDefault();
-                $this._itemClick($(e.target));
+
+            switch(ev.keyCode) {
+                case Keyboard.ENTER:
+                    e.preventDefault();
+                    $this._itemClick($(e.target));
+                    break;
+                case Keyboard.RIGHT:
+                    e.preventDefault();
+                    if ($(e.target).parent().hasClass(prefix+'_collapsed')) {
+                        $this._itemClick($(e.target));
+                    }
+                    $(e.target).next().find('[role="menuitem"]').first().focus();
+                    break;
+            }
+        });
+
+        $this.mobileNav.on('keydown', '[role="menuitem"]', function(e) {
+            var ev = e || event;
+
+            switch(ev.keyCode){
+                case Keyboard.DOWN:
+                    e.preventDefault();
+                    var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
+                    var idx = allItems.index( e.target );
+                    var nextIdx = idx + 1;
+                    if (allItems.length <= nextIdx) {
+                        nextIdx = 0;
+                    }
+                    var next = allItems.eq( nextIdx );
+                    next.focus();
+                break;
+                case Keyboard.UP:
+                    e.preventDefault();
+                    var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
+                    var idx = allItems.index( e.target );
+                    var next = allItems.eq( idx - 1 );
+                    next.focus();
+                break;
+                case Keyboard.LEFT:
+                    e.preventDefault();
+                    if ($(e.target).parent().parent().parent().hasClass(prefix+'_open')) {
+                        var parent = $(e.target).parent().parent().prev();
+                        parent.focus();
+                        $this._itemClick(parent);
+                    } else if ($(e.target).parent().parent().hasClass(prefix+'_nav')){
+                        $this._menuToggle();
+                        $($this.btn).focus();
+                    }
+                    break;
+                case Keyboard.ESCAPE:
+                    e.preventDefault();
+                    $this._menuToggle();
+                    $($this.btn).focus();
+                    break;    
             }
         });
 
