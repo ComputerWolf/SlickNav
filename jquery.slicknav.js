@@ -442,7 +442,7 @@
                 });
             } else if(settings.animations === 'velocity') {
                 el.velocity("finish").velocity("slideDown", {
-                    duration: settings.duration,
+                    duration: duration,
                     easing: settings.easingOpen,
                     complete: function() {
                         afterOpen(trigger, parent);
@@ -467,7 +467,7 @@
             } else if (settings.animations === 'velocity') {
                 
                 el.velocity("finish").velocity("slideUp", {
-                    duration: settings.duration,
+                    duration: duration,
                     easing: settings.easingClose,
                     complete: function() {
                         afterClose(trigger, parent);
