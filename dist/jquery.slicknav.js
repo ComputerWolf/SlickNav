@@ -1,5 +1,5 @@
 /*!
- * SlickNav Responsive Mobile Menu v1.0.8
+ * SlickNav Responsive Mobile Menu v1.0.10
  * (c) 2016 Josh Cope
  * licensed under MIT
  */
@@ -447,7 +447,7 @@
                 });
             } else if(settings.animations === 'velocity') {
                 el.velocity("finish").velocity("slideDown", {
-                    duration: settings.duration,
+                    duration: duration,
                     easing: settings.easingOpen,
                     complete: function() {
                         afterOpen(trigger, parent);
@@ -472,7 +472,7 @@
             } else if (settings.animations === 'velocity') {
                 
                 el.velocity("finish").velocity("slideUp", {
-                    duration: settings.duration,
+                    duration: duration,
                     easing: settings.easingClose,
                     complete: function() {
                         afterClose(trigger, parent);
