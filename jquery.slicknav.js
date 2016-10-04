@@ -28,7 +28,7 @@
             afterClose: function () {}
         },
         mobileMenu = 'slicknav',
-        prefix = 'slicknav';
+        prefix = 'slicknav',
 
         Keyboard = {
             DOWN: 40,
