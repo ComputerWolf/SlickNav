@@ -3,7 +3,7 @@
 
 [![Join the chat at https://gitter.im/ComputerWolf/SlickNav](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ComputerWolf/SlickNav?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-###[SlickNav.com](http://slicknav.com)
+### [SlickNav.com](http://slicknav.com)
 
 ### Features
 * Multi-level menu support
@@ -16,13 +16,13 @@
 * * *
 ### Usage
 
-####Include the CSS & JS
+#### Include the CSS & JS
 slicknav.css can be modified to fit website design
 
     <link rel="stylesheet" href="SlickNav/dist/slicknav.min.css" />
     <script src="SlickNav/dist/jquery.slicknav.min.js"></script>
 
-####Menu Markup
+#### Menu Markup
 
     <ul id="menu">
         <li><a href="#">item 1</a></li>
@@ -30,7 +30,7 @@ slicknav.css can be modified to fit website design
         <li><a href="#">item 3</a></li>
         <li><a href="#">item 4</a></li>
     </ul>
-####Initialize
+#### Initialize
 
     <script>
         $(function(){
