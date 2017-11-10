@@ -17,13 +17,13 @@
 * * *
 ### Usage
 
-####Include the CSS & JS
+#### Include the CSS & JS
 slicknav.css can be modified to fit website design
 
     <link rel="stylesheet" href="SlickNav/dist/slicknav.min.css" />
     <script src="SlickNav/dist/jquery.slicknav.min.js"></script>
 
-####Menu Markup
+#### Menu Markup
 
     <ul id="menu">
         <li><a href="#">item 1</a></li>
@@ -31,7 +31,7 @@ slicknav.css can be modified to fit website design
         <li><a href="#">item 3</a></li>
         <li><a href="#">item 4</a></li>
     </ul>
-####Initialize
+#### Initialize
 
     <script>
         $(function(){
