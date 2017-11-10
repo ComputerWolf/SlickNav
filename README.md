@@ -3,7 +3,7 @@
 
 [![Join the chat at https://gitter.im/ComputerWolf/SlickNav](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ComputerWolf/SlickNav?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-###[SlickNav.com](http://slicknav.com)
+### [SlickNav.io](http://slicknav.io)
 
 ### Features
 * Multi-level menu support
@@ -93,7 +93,7 @@ For example:
         }
     }
 
-More examples at [SlickNav.com](http://slicknav.com)
+More examples at [SlickNav.io](http://slicknav.io)
 
 ### Browser Support
 * Chrome
