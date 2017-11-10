@@ -2,6 +2,7 @@
 ## Responsive Mobile Menu jQuery Plugin
 
 [![Join the chat at https://gitter.im/ComputerWolf/SlickNav](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ComputerWolf/SlickNav?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/slicknav/badge?style=rounded)](https://www.jsdelivr.com/package/npm/slicknav)
 
 ### [SlickNav.io](http://slicknav.io)
 
