@@ -54,6 +54,7 @@ slicknav.css can be modified to fit website design
     'allowParentLinks': false // Allow clickable links as parent elements.
     'nestedParentLinks': true // If false, parent links will be separated from the sub-menu toggle.
     'showChildren': false // Show children of parent links by default.
+    'showChildrenOnHover': false // Show children of parent links when hovering over parent.
     'removeIds': true // Remove IDs from all menu elements. Defaults to false if duplicate set to false.
     'removeClasses': false // Remove classes from all menu elements.
 	'brand': '' // Add branding to menu bar.
