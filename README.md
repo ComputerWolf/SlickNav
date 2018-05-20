@@ -22,6 +22,11 @@ slicknav.css can be modified to fit website design
 
     <link rel="stylesheet" href="SlickNav/dist/slicknav.min.css" />
     <script src="SlickNav/dist/jquery.slicknav.min.js"></script>
+    
+If you prefer you can also use the _CSS_ and _JS_ libraries from the **CDN**:
+<link rel="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
+
 
 #### Menu Markup
 
