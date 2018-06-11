@@ -12,6 +12,7 @@
             prependTo: 'body',
             appendTo: '',
             parentTag: 'a',
+			wrapperTag: 'div',
             closeOnClick: false,
             allowParentLinks: false,
             nestedParentLinks: true,
@@ -112,7 +113,7 @@
 
         // create menu bar
         $this.mobileNav.attr('class', prefix + '_nav');
-        menuBar = $('<div class="' + prefix + '_menu"></div>');
+        menuBar = $('<'+ settings.wrapperTag +' />').addClass(prefix +'_menu');
 		if (settings.brand !== '') {
 			var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
 			$(menuBar).append(brand);
