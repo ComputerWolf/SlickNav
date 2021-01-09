@@ -1,0 +1,571 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>SlickNav - Responsive Mobile Menu Plugin for jQuery</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="icon" type="image/png" href="favicon.png">
+	
+	<meta name="viewport" content="width=device-width">
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="mobile-menu/slicknav.css" />
+	<link rel="stylesheet" href="css/demo.css" />
+	<link rel="stylesheet" href="css/prism.css" />
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/grid.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	
+</head>
+<body>
+<div id="mobileMenu"></div>
+<div id="nav">
+	<div class="container">
+		<div class="grid_3">
+			<img src="images/logo.png" />
+		</div>
+		<div class="grid_9">
+			<div class="align-right">
+				<ul id="main-menu">
+					<li><a class="scroll" href="#features">Features</a></li>
+					<li><a class="scroll" href="#usage">Usage</a></li>
+					<li><a class="scroll" href="#examples">Examples</a></li>
+					<li><a class="scroll" href="#requirements">Requirements</a></li>
+					<li><a target="_blank" href="https://github.com/ComputerWolf/SlickNav">View on Github</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="main">
+	<div class="align-right banner">
+		<div class="container">
+			<div class="grid_12">
+				<div class="relative">
+					<span>a responsive nav jQuery plugin</span>
+					<img src="images/banner.png">					
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="awesomeness">
+		<div class="container">
+			<div class="grid_9">
+				get started with mobile awesomeness
+			</div>
+			<div class="grid_3">
+				<a target="_blank" href="https://github.com/ComputerWolf/SlickNav/releases" class="btn">Download Now</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<section id="features">
+		<div class="container">
+			<div class="grid_12">
+				<h2>Features</h2>
+				<ul>
+					<li>Multi-level menu support</li>
+					<li>Flexible, simple markup</li>
+					<li>Cross-browser compatibility</li>
+					<li>Keyboard Accessible</li>
+					<li>Degrades gracefully without JavaScript</li>
+					<li>Creates ARIA compliant menu</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</section>
+	<section id="usage">
+		<div class="container">
+			<div class="grid_12">
+				<h2>Usage Instructions</h2>
+				<h3>Include the CSS &amp; JS</h3>
+				slicknav.css can be modified to fit website design
+<pre><code class="language-markup">&lt;link rel="stylesheet" href="SlickNav/slicknav.css" /&gt;
+&lt;script src="SlickNav/jquery.slicknav.min.js"&gt;&lt;/script&gt;</code></pre>
+				<h3>Menu Markup</h3>
+				<pre><code class="language-markup">&lt;ul id=&quot;menu&quot;&gt;
+	&lt;li&gt;&lt;a href=&quot;#&quot;&gt;item 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;#&quot;&gt;item 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;#&quot;&gt;item 3&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;#&quot;&gt;item 4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+				<h3>Initialize</h3>
+<pre><code class="language-markup">&lt;script&gt;
+	$(function(){
+		$('#menu').slicknav();
+	});
+&lt;/script&gt;</code></pre>
+<p>Without any additional configuration, both the original and mobile menus will be displayed. It is recommended to use media queries to hide the original menu and display the mobile menu when appropriate. <a target="_blank" href="http://modernizr.com/">Modernizr</a> or similar can be used for graceful degradation.</p>
+For example:
+<pre><code class="language-css">.slicknav_menu {
+	display:none;
+}
+
+@media screen and (max-width: 40em) {
+	/* #menu is the original menu */
+	.js #menu {
+		display:none;
+	}
+	
+	.js .slicknav_menu {
+		display:block;
+	}
+}</code></pre>
+				<h3>Available Options</h3>
+				<table>
+				<tr>
+					<th>Property</th>
+					<th>Default</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>
+						label
+					</td>
+					<td>
+						"MENU"
+					</td>
+					<td>
+						Label for menu button. Use an empty string for no label.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						duplicate
+					</td>
+					<td>
+						true
+					</td>
+					<td>
+						If true, a copy of the menu element is made for the mobile menu. This allows for separate functionality for both mobile and non-mobile versions.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						duration
+					</td>
+					<td>
+						200
+					</td>
+					<td>
+						The duration of the sliding animation.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						easingOpen
+					</td>
+					<td>
+						"swing"
+					</td>
+					<td>
+						Easing used for open animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as <a target="_blank" href="http://jqueryui.com/">jQuery UI</a>.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						easingClose
+					</td>
+					<td>
+						"swing"
+					</td>
+					<td>
+						Easing used for close animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as <a target="_blank" href="http://jqueryui.com/">jQuery UI</a>.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						closedSymbol
+					</td>
+					<td>
+						"&amp;#9658;"
+					</td>
+					<td>
+						Character after collapsed parents..
+					</td>
+				</tr>
+				<tr>
+					<td>
+						openedSymbol
+					</td>
+					<td>
+						"&amp;#9660;"
+					</td>
+					<td>
+						Character after expanded parents.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						prependTo
+					</td>
+					<td>
+						"body"
+					</td>
+					<td>
+						Element, jQuery object, or jQuery selector string for the element to prepend the mobile menu to.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						appendTo
+					</td>
+					<td>
+						""
+					</td>
+					<td>
+						Element, jQuery object, or jQuery selector string to append the mobile menu to. Takes precedence over prependTo.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						parentTag
+					</td>
+					<td>
+						"a"
+					</td>
+					<td>
+						Element type for parent menu items. Anchor tag is recommended for accessibility.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						closeOnClick
+					</td>
+					<td>
+						false
+					</td>
+					<td>
+						Close menu when a link is clicked. Useful when navigating within a single page.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						allowParentLinks
+					</td>
+					<td>
+						false
+					</td>
+					<td>
+						Allow clickable links as parent elements.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						nestedParentLinks
+					</td>
+					<td>
+						true
+					</td>
+					<td>
+						If false, parent links will be separated from the sub-menu toggle.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						showChildren
+					</td>
+					<td>
+						false
+					</td>
+					<td>
+						Show children of parent links by default.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						removeIds
+					</td>
+					<td>
+						true
+					</td>
+					<td>
+						Remove IDs from all menu elements. Defaults to false if duplicate set to false.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						removeClasses
+					</td>
+					<td>
+						false
+					</td>
+					<td>
+						Remove classes from all menu elements.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						brand
+					</td>
+					<td>
+						""
+					</td>
+					<td>
+						Add branding to menu bar.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						animations
+					</td>
+					<td>
+						"jquery"
+					</td>
+					<td>
+						Animation library. Currently supports "jquery" and "velocity".
+					</td>
+				</tr>
+				</table>
+				
+				<h3>Callbacks</h3>
+				<table>
+				<tr>
+					<th>Property</th>
+					<th>Parameters</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>
+						init
+					</td>
+					<td>
+						function(){}
+					</td>
+					<td>
+						Called after SlickNav creation.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						beforeOpen
+					</td>
+					<td>
+						function(trigger){}
+					</td>
+					<td>
+						Called before menu or sub-menu opened.
+					</td>
+				</tr>
+                <tr>
+					<td>
+						afterOpen
+					</td>
+					<td>
+						function(trigger){}
+					</td>
+					<td>
+						Called after menu or sub-menu opened.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						beforeClose
+					</td>
+					<td>
+						function(trigger){}
+					</td>
+					<td>
+						Called before menu or sub-menu closed.
+					</td>
+				</tr>
+                <tr>
+					<td>
+						afterClose
+					</td>
+					<td>
+						function(trigger){}
+					</td>
+					<td>
+						Called after menu or sub-menu closed.
+					</td>
+				</tr>
+				</table>
+				
+				<h3>Methods</h3>
+				<table>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>
+						$('.menu').slicknav('toggle');
+					</td>
+					<td>
+						Method to toggle the menu.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						$('.menu').slicknav('open');
+					</td>
+					<td>
+						Method to open the menu.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						$('.menu').slicknav('close');
+					</td>
+					<td>
+						Method to close the menu.
+					</td>
+				</tr>
+				</table>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</section>
+	<section id="examples">
+		<div class="container">
+			<div class="grid_12">
+				<h2>Examples</h2>
+			</div>
+			<div class="grid_3">
+				<h3>Basic Demo</h3>
+				<div id="demo1"></div>
+			</div>
+			<div class="grid_9">
+				<h3>HTML</h3>
+				<pre><code class="language-markup">&lt;ul id="menu"&gt;
+	&lt;li&gt;&lt;a class="scroll" href="#features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a class="scroll" href="#usage"&gt;Usage Instructions&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a class="scroll" href="#examples"&gt;Examples&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://github.com"&gt;View on Github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+				<h3>JavaScript</h3>
+				<pre><code class="language-javascript">$('#menu').slicknav({
+		prependTo:'#demo1'
+});</code></pre>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_3">
+				<h3>Advanced Demo</h3>
+				<div id="demo2"></div>
+			</div>
+			<div class="grid_9">
+			<h3>HTML</h3>
+				<pre><code class="language-markup">&lt;ul id="menu2"&gt;
+    &lt;li&gt;Parent 1
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;item 3&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;Parent 3
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;item 8&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;item 9&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;item 10&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;item 4&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;item 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;non-link item&lt;/li&gt;
+    &lt;li&gt;Parent 2
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;item 5&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;item 6&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;item 7&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+				<h3>JavaScript</h3>
+				<pre><code class="language-javascript">$('#menu2').slicknav({
+	label: '',
+	duration: 1000,
+	easingOpen: "easeOutBounce", //available with jQuery UI
+	prependTo:'#demo2'
+});</code></pre>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</section>
+	<section id="requirements">
+		<div class="container">
+			<div class="grid_12">
+				<h2>Requirements &amp; Browser Support</h2>
+				<p>Requires jQuery 1.7+</p>
+				<span class="bold">Tested Browsers:</span>
+				<ul>
+					<li>Chrome</li>
+					<li>Firefox</li>
+					<li>Safari</li>
+					<li>Opera</li>
+					<li>IE7+</li>
+					<li>Android Browser</li>
+					<li>iOS Safari</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</section>
+</div>
+<div class="demo_html">
+	<ul id="menu">
+		<li><a class="scroll" href="#features">Features</a></li>
+		<li><a class="scroll" href="#usage">Usage</a></li>
+		<li><a class="scroll" href="#examples">Examples</a></li>
+		<li><a class="scroll" href="#requirements">Requirements</a></li>
+		<li><a target="_blank" href="https://github.com/ComputerWolf/SlickNav">View on Github</a></li>
+	</ul>
+</div>
+<div class="demo_html">
+	<ul id="menu2">
+		<li>Parent 1
+			<ul>
+				<li><a href="#">item 3</a></li>
+				<li>Parent 3
+					<ul>
+						<li><a href="#">item 8</a></li>
+						<li><a href="#">item 9</a></li>
+						<li><a href="#">item 10</a></li>
+					</ul>
+				</li>
+				<li><a href="#">item 4</a></li>
+			</ul>
+		</li>
+		<li><a href="#">item 1</a></li>
+		<li>non-link item</li>
+		<li>Parent 2
+			<ul>
+				<li><a href="#">item 5</a></li>
+				<li><a href="#">item 6</a></li>
+				<li><a href="#">item 7</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
+<script src="mobile-menu/jquery.slicknav.js"></script>
+<script src="js/jquery.smooth-scroll.min.js"></script>
+<script src="js/prism.js"></script>
+<script src="js/scripts.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44597297-1', 'slicknav.io');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+/*
+Responsive 996px grid system ~ Style CSS.
+Copyright 2013, Josh Cope
+*/
+
+/* =============================================================================
+   Site Styles
+   ========================================================================== */
+   
+	body {
+		font-family: 'Open Sans', sans-serif;
+		background:#ebebeb;
+	}
+	
+	.align-right {
+		text-align:right;
+	}
+	
+	.align-center {
+		text-align:right;
+	}
+	
+	.bold {
+		font-weight:700;
+	}
+	
+	.relative {
+		position:relative;
+	}
+	
+	h2 {
+		text-transform:uppercase;
+		font-weight:800;
+		font-size:2.375em;
+	}
+
+	#nav {
+		position:fixed;
+		width:100%;
+		border-top:6px solid #ea0b25;
+		text-transform:uppercase;
+		font-weight:600;
+		font-size:1.125em;
+		padding:1em 0;
+		background:#fff;
+		z-index:999;
+	}
+	
+	#nav ul {
+		padding:0;
+		margin:0;
+	}
+	
+	#nav li {
+		display:inline-block;
+		padding:0.5em 0.5em;
+	}
+	
+	.lt-ie8 {
+		display:inline;
+		zoom:1;
+	}
+	
+	#nav a {
+		color:#333333;
+		text-decoration:none;
+	}
+	
+	#nav a:hover {
+		border-bottom:4px solid #ea0b25;
+	}
+	
+	#main-menu {
+		padding-top:5.688em;
+	}
+	
+	.banner span {
+		display:block;
+		color:#fff;
+		font-size:2.500em;
+		font-weight:400;
+		margin:0.75em 0;
+	}
+	
+	.banner {
+		text-align:center;
+		background:#ea0b25;
+	}
+	
+	#awesomeness {
+		font-size:1.875em;
+		font-weight:300;
+		padding:0.5em 0;
+		background:#fff;
+	}
+	
+	#awesomeness .btn {
+		background:#333;
+		padding:0.75em 1em;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		border-bottom:3px solid #bfbfbf;
+		font-size:0.667em;
+		text-transform:uppercase;
+		color:#fff;
+		line-height:1em;
+		font-weight:600;
+		text-align:center;
+		text-decoration:none;
+		display:block;
+	}
+	
+	#awesomeness .btn:hover {
+		background:#6b6b6b;
+	}
+	
+	table {
+	  width: 100%;
+	  background: #fff;
+	  font-size: 14px;
+	}
+	table tr th,
+	table tr td {
+	  vertical-align: top;
+	  text-align: left;
+	  padding: 8px 0 8px 16px;
+	  border-top: 1px solid #ebebeb;
+	}
+	/*table tr th:first-child,
+	table tr td:first-child {
+	  padding-left: 0;
+	}*/
+	table tr th {
+	  background: #f5f4f2;
+	  font-weight: normal;
+	}
+	table tr td:first-child {
+	  font-family: Consolas, monospace;
+	  color: #008000;
+	}
+	
+	pre {
+		word-wrap: normal;
+	}
+	
+	.demo_html {
+		display:none;
+	}
+	
+	.footer {
+		margin-top:1em;
+		border-top:1px solid #c6c6c6;
+		padding:2em 0;
+		font-size:0.7em;
+		color:#777;
+	}
+	
+	.footer a{
+		text-decoration:none;
+		color:#888;
+	}
+	
+	.footer a:hover {
+		text-decoration:underline;
+	}
+	
+	#mobileMenu {
+		display:none;
+	}
+
+	/* ***** AD CODE STYLING ***** */
+
+	.carbon-wrap{
+		display: block;
+		background: #f5f2f0;
+		padding: 15px 15px 10px 15px;
+		margin-top:2em;
+	}
+	.carbon-wrap a {
+	    display: block;
+	    text-decoration: none;
+	}
+
+	.carbon-img {
+	    float: left;
+	    margin-right: 10px;
+	}
+
+	.carbon-text {
+	    font-size: 80%;
+	    line-height: 130%;
+	    min-width: 120px;
+	    color: #06c;
+	}
+
+	.carbon-poweredby {
+	    color: #6e6e6e;
+	    text-decoration: underline;
+	    font-size: 65%;
+	    font-style: italic;
+	    text-align: center;
+	    display: block;
+	    margin: 8px 0 0 0;
+	}
+
+	.carbon-wrap:before, .carbon-wrap:after{content:"";display:table;}
+	.carbon-wrap:after{clear:both;}
+	.carbon-wrap{zoom:1;}
+
+/* =============================================================================
+   Media Queries
+   ========================================================================== */
+
+/* Tablet Portrait size to Base 996px */
+@media only screen and (min-width: 768px) and (max-width: 995px) {
+	#nav {
+		font-size:0.938em;
+	}
+}
+
+/* All Mobile Sizes */
+@media only screen and (max-width: 767px) {
+	.js #nav .grid_9 {
+		display:none;
+	}
+	
+	.js #mobileMenu {
+		display:block;
+		position:fixed;
+		width:100%;
+		z-index:1000;
+	}
+	
+	.js #nav{
+		text-align:center;
+	}
+
+	#nav {
+		position:relative;
+		padding-top:3.375em;
+	}
+    
+    .no-js #nav {
+        padding-top:1em;
+    }
+	
+	#nav img {
+		display:block;
+		margin:0 auto;
+	}
+	
+	#main {
+		padding:0;
+	}
+	
+	.banner span {
+		line-height:1em;
+		font-size:1em;
+	}
+	
+	#awesomeness {
+		text-align:center;
+		font-size:1.4em;
+	}
+	
+	#awesomeness .btn {
+		margin-top:1em;
+	}
+	
+	#nav ul {
+		text-align: center;
+		font-size:0.6em;
+		line-height: 1.5em;
+	}
+	
+	#nav ul li {
+		padding:0.25em;
+	}
+	
+	table tr th,
+	table tr td {
+	  padding: 2px 0 2px 4px;
+	}
+	
+	h2 {
+		font-size:2em;
+	}
+}
+
+/* Mobile Landscape Size to Tablet Portrait */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Mobile Portrait Size to Mobile Landscape Size */
+@media only screen and (max-width: 479px) {}
+
+
+/* =============================================================================
+   Font-Face
+   ========================================================================== */
+/* This is the proper syntax for an @font-face file
+
+/* @font-face {
+font-family: 'FontName';
+src: url('../fonts/FontName.eot');
+src: url('../fonts/FontName.eot?iefix') format('embedded-opentype'),
+url('../fonts/FontName.woff') format('woff'),
+url('../fonts/FontName.ttf') format('truetype'),
+url('../fonts/FontName.svg#FontName') format('svg');
+font-weight: normal;
+font-style: normal; }
+*/

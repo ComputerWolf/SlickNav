@@ -1,0 +1,34 @@
+/* 
+    Demo Style
+*/
+
+/* Button */
+#demo2 .slicknav_btn {
+	background: none;
+}
+/* Button Lines */
+#demo2 .slicknav_menu .slicknav_icon-bar {
+  background-color: #81a9ff;
+}
+#demo2 .slicknav_menu {
+	background:#212b41;
+	padding:0;
+}
+#demo2 .slicknav_nav ul, #demo2 .slicknav_nav li {
+	border-top:2px solid #192132;
+	margin-top:0;
+	margin-right:0;
+	margin-bottom:0;
+}
+#demo2 .slicknav_nav .slicknav_item:hover {
+	background:none;
+	color:#81a9ff;
+}
+#demo2 .slicknav_nav a:hover{
+	background:none;
+	color:#81a9ff;
+}
+#demo2 .slicknav_nav .slicknav_txtnode {
+    padding: 7px 15px;
+	margin: 0;
+}
