@@ -1,11 +1,11 @@
 //colors
-$color_0: rgba(255, 255, 255, 0.75);
-$color_btn: #222;
-$color_text: #fff;
-$color_shadow: #000;
-$color_bg: #4c4c4c;
-$color_hover_bg: #ccc;
-$color_hover_text: #222;
+$color_0: rgba(255, 255, 255, 0.75) !default;
+$color_btn: #222 !default;
+$color_text: #fff !default;
+$color_shadow: #000 !default;
+$color_bg: #4c4c4c !default;
+$color_hover_bg: #ccc !default;
+$color_hover_text: #222 !default;
 
 .slicknav_menu {
 	font-size: 16px;
