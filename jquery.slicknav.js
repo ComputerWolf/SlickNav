@@ -16,6 +16,7 @@
             allowParentLinks: false,
             nestedParentLinks: true,
             showChildren: false,
+            showChildrenOnHover: false,
             removeIds: true,
             removeClasses: false,
             removeStyles: false,
@@ -256,6 +257,37 @@
             e.preventDefault();
             $this._itemClick($(this));
         });
+
+        // toggle submenus on hover
+        if (settings.showChildrenOnHover) {
+            $('.'+prefix+'_parent,.'+prefix+'_open' ).mouseenter(function (event) {
+                event.preventDefault();
+                var parentEl=$(event.target).closest('.'+prefix+'_parent');
+                var sub_menu = parentEl.children('ul');
+                if (!parentEl.hasClass(prefix+'_collapsed')) {
+                    return;
+                }
+                parentEl.removeClass(prefix+'_collapsed');
+                parentEl.addClass(prefix+'_open');
+                parentEl.addClass(prefix+'_animating');
+                var arrow = parentEl.children('.'+prefix+'_item').children('.'+prefix+'_arrow');
+                arrow.html(settings.openedSymbol);
+                $this._visibilityToggle(sub_menu, parentEl, true, parentEl);
+            }).mouseleave(function (event) {
+                event.preventDefault();
+                var parentEl=$(event.target).closest('.'+prefix+'_parent');
+                var sub_menu = parentEl.children('ul');
+                if (!parentEl.hasClass(prefix+'_open')) {
+                    return;
+                }
+                parentEl.addClass(prefix+'_collapsed');
+                parentEl.removeClass(prefix+'_open');
+                parentEl.addClass(prefix+'_animating');
+                var arrow = parentEl.children('.'+prefix+'_item').children('.'+prefix+'_arrow');
+                arrow.html(settings.closedSymbol);
+                $this._visibilityToggle(sub_menu, parentEl, true, parentEl);
+            });
+        }
 
         // check for keyboard events on menu button and menu parents
         $($this.btn).keydown(function (e) {
