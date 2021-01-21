@@ -19,6 +19,8 @@
         removeClasses: false,
         removeStyles: false,
         brand: '',
+        barItems: 3,
+        bar: '',
         animations: 'jquery',
         init: function () {},
         beforeOpen: function () {},
@@ -65,6 +67,7 @@
             menu = $(this.element),
             settings = this.settings,
             iconClass,
+            iconBar='',
             menuBar;
 
         // clone menu if needed
@@ -108,21 +111,36 @@
         // create menu bar
         $this.mobileNav.attr('class', prefix + '_nav');
         menuBar = $('<div class="' + prefix + '_menu"></div>');
-		if (settings.brand !== '') {
-			var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
-			$(menuBar).append(brand);
-		}
-        $this.btn = $(
-            ['<' + settings.parentTag + ' aria-label="' + settings.label + '" aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
-                '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
-                '<span class="' + iconClass + '">',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                '</span>',
-            '</' + settings.parentTag + '>'
-            ].join('')
-        );
+        if (settings.brand !== '') {
+            var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
+            $(menuBar).append(brand);
+        }
+
+        // create icon bar
+        iconBar += '<' + settings.parentTag + ' aria-label="' + settings.label + '" aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">';
+        if(settings.label === '') {
+            iconClass += ' ' + prefix + '_no-text';
+        } else {
+            iconBar += '<span class="' + prefix + '_menutxt">' + settings.label + '</span>';
+        }
+        iconBar += '<span class="' + iconClass + '">';
+
+        if(settings.bar !== '') {
+            iconBar += settings.bar;
+        } else if(settings.barItems > 0 && settings.barItems !== 3) {
+            for(var b=1; b<=settings.barItems; b++) {
+                iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            }
+        } else {
+            // fallback (default)
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+        }
+        iconBar += '</span></' + settings.parentTag + '>';
+
+        $this.btn = $(iconBar);
+
         $(menuBar).append($this.btn);
         if(settings.appendTo !== '') {
             $(settings.appendTo).append(menuBar);
