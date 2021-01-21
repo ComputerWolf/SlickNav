@@ -1,45 +1,44 @@
 ;(function ($, document, window) {
-    var
     // default settings object.
-        defaults = {
-            label: 'MENU',
-            duplicate: true,
-            duration: 200,
-            easingOpen: 'swing',
-            easingClose: 'swing',
-            closedSymbol: '&#9658;',
-            openedSymbol: '&#9660;',
-            prependTo: 'body',
-            appendTo: '',
-            parentTag: 'a',
-            closeOnClick: false,
-            allowParentLinks: false,
-            nestedParentLinks: true,
-            showChildren: false,
-            removeIds: true,
-            removeClasses: false,
-            removeStyles: false,
-			brand: '',
-            animations: 'jquery',
-            init: function () {},
-            beforeOpen: function () {},
-            beforeClose: function () {},
-            afterOpen: function () {},
-            afterClose: function () {}
-        },
-        mobileMenu = 'slicknav',
-        prefix = 'slicknav',
+    var defaults = {
+        label: 'MENU',
+        duplicate: true,
+        duration: 200,
+        easingOpen: 'swing',
+        easingClose: 'swing',
+        closedSymbol: '&#9658;',
+        openedSymbol: '&#9660;',
+        prependTo: 'body',
+        appendTo: '',
+        parentTag: 'a',
+        closeOnClick: false,
+        allowParentLinks: false,
+        nestedParentLinks: true,
+        showChildren: false,
+        removeIds: true,
+        removeClasses: false,
+        removeStyles: false,
+        brand: '',
+        animations: 'jquery',
+        init: function () {},
+        beforeOpen: function () {},
+        beforeClose: function () {},
+        afterOpen: function () {},
+        afterClose: function () {}
+    },
+    mobileMenu = 'slicknav',
+    prefix = 'slicknav',
 
-        Keyboard = {
-            DOWN: 40,
-            ENTER: 13,
-            ESCAPE: 27,
-            LEFT: 37,
-            RIGHT: 39,
-            SPACE: 32,
-            TAB: 9,
-            UP: 38,
-        };
+    Keyboard = {
+        DOWN: 40,
+        ENTER: 13,
+        ESCAPE: 27,
+        LEFT: 37,
+        RIGHT: 39,
+        SPACE: 32,
+        TAB: 9,
+        UP: 38,
+    };
 
     function Plugin(element, options) {
         this.element = element;
@@ -52,7 +51,7 @@
 
         // Don't remove IDs by default if duplicate is false
         if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
-          this.settings.removeIds = false;
+            this.settings.removeIds = false;
         }
 
         this._defaults = defaults;
@@ -69,18 +68,14 @@
             menuBar;
 
         // clone menu if needed
-        if (settings.duplicate) {
-            $this.mobileNav = menu.clone();
-        } else {
-            $this.mobileNav = menu;
-        }
+        $this.mobileNav = settings.duplicate ? menu.clone() : menu;
 
         // remove IDs if set
         if (settings.removeIds) {
-          $this.mobileNav.removeAttr('id');
-          $this.mobileNav.find('*').each(function (i, e) {
-              $(e).removeAttr('id');
-          });
+            $this.mobileNav.removeAttr('id');
+            $this.mobileNav.find('*').each(function (i, e) {
+                $(e).removeAttr('id');
+            });
         }
 
         // remove classes if set
@@ -106,7 +101,7 @@
             iconClass += ' ' + prefix + '_no-text';
         }
 
-        if (settings.parentTag == 'a') {
+        if (settings.parentTag === 'a') {
             settings.parentTag = 'a href="#"';
         }
 
@@ -174,8 +169,9 @@
                 if ((!settings.allowParentLinks || settings.nestedParentLinks) || !containsAnchor) {
                     var $wrap = $(nodes).wrapAll(wrapElement).parent();
                     $wrap.addClass(prefix+'_row');
-                } else
-                    $(nodes).wrapAll('<span class="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
+                } else {
+                    $(nodes).wrapAll('<span class="' + prefix + '_parent-link ' + prefix + '_row"/>').parent();
+                }
 
                 if (!settings.showChildren) {
                     item.addClass(prefix+'_collapsed');
@@ -188,34 +184,34 @@
                 // create parent arrow. wrap with link if parent links and separating
                 var arrowElement = $('<span class="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
 
-                if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
+                if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor) {
                     arrowElement = arrowElement.wrap(wrapElement).parent();
+                }
 
                 //append arrow
                 $(nodes).last().after(arrowElement);
 
-
             } else if ( item.children().length === 0) {
-                 item.addClass(prefix+'_txtnode');
+                item.addClass(prefix+'_txtnode');
             }
 
             // accessibility for links
             item.children('a').attr('role', 'menuitem').click(function(event){
                 //Ensure that it's not a parent
                 if (settings.closeOnClick && !$(event.target).parent().closest('li').hasClass(prefix+'_parent')) {
-                        //Emulate menu close if set
-                        $($this.btn).click();
-                    }
+                    //Emulate menu close if set
+                    $($this.btn).click();
+                }
             });
 
             //also close on click if parent links are set
             if (settings.closeOnClick && settings.allowParentLinks) {
-                item.children('a').children('a').click(function (event) {
+                item.children('a').children('a').click(function () {
                     //Emulate menu close
                     $($this.btn).click();
                 });
 
-                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(event){
+                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(){
                     //Emulate menu close
                         $($this.btn).click();
                 });
@@ -269,12 +265,12 @@
                     if (ev.keyCode !== Keyboard.DOWN || !$($this.btn).hasClass(prefix+'_open')){
                         $this._menuToggle();
                     }
-                    
+
                     $($this.btn).next().find('[role="menuitem"]').first().focus();
                     break;
             }
 
-            
+
         });
 
         $this.mobileNav.on('keydown', '.'+prefix+'_item', function(e) {
@@ -302,7 +298,7 @@
                 case Keyboard.DOWN:
                     e.preventDefault();
                     var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
-                    var idx = allItems.index( e.target );
+                    var idx = allItems.index(e.target);
                     var nextIdx = idx + 1;
                     if (allItems.length <= nextIdx) {
                         nextIdx = 0;
@@ -313,8 +309,8 @@
                 case Keyboard.UP:
                     e.preventDefault();
                     var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
-                    var idx = allItems.index( e.target );
-                    var next = allItems.eq( idx - 1 );
+                    var idx = allItems.index(e.target);
+                    var next = allItems.eq(idx - 1);
                     next.focus();
                 break;
                 case Keyboard.LEFT:
@@ -332,14 +328,14 @@
                     e.preventDefault();
                     $this._menuToggle();
                     $($this.btn).focus();
-                    break;    
+                    break;
             }
         });
 
         // allow links clickable within parent tags if set
         if (settings.allowParentLinks && settings.nestedParentLinks) {
             $('.'+prefix+'_item a').click(function(e){
-                    e.stopImmediatePropagation();
+                e.stopImmediatePropagation();
             });
         }
     };
@@ -402,7 +398,7 @@
         if (animate) {
             duration = settings.duration;
         }
-        
+
         function afterOpen(trigger, parent) {
             $(trigger).removeClass(prefix+'_animating');
             $(parent).removeClass(prefix+'_animating');
@@ -412,7 +408,7 @@
                 settings.afterOpen(trigger);
             }
         }
-        
+
         function afterClose(trigger, parent) {
             el.attr('aria-hidden','true');
             items.attr('tabindex', '-1');
@@ -425,7 +421,7 @@
             //Fire init or afterClose callback
             if (!init){
                 settings.afterClose(trigger);
-            } else if (trigger == 'init'){
+            } else if (trigger === 'init'){
                 settings.init();
             }
         }
@@ -465,7 +461,7 @@
                     afterClose(trigger, parent)
                 });
             } else if (settings.animations === 'velocity') {
-                
+
                 el.velocity("finish").velocity("slideUp", {
                     duration: duration,
                     easing: settings.easingClose,
