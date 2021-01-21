@@ -64,6 +64,8 @@ If you prefer you can also use the _CSS_ and _JS_ libraries from the **CDN**:
     'removeIds': true // Remove IDs from all menu elements. Defaults to false if duplicate set to false.
     'removeClasses': false // Remove classes from all menu elements.
 	'brand': '' // Add branding to menu bar.
+	'barItems': 3 // Change the numbers of bars in the menu button (default: 3)
+	'bar': '' // Replace the barItems by custom html content
     'animations': 'jquery' // Animation library. Currently supports "jquery" and "velocity".
 
 ### Callbacks

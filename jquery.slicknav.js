@@ -1,45 +1,46 @@
 ;(function ($, document, window) {
-    var
     // default settings object.
-        defaults = {
-            label: 'MENU',
-            duplicate: true,
-            duration: 200,
-            easingOpen: 'swing',
-            easingClose: 'swing',
-            closedSymbol: '&#9658;',
-            openedSymbol: '&#9660;',
-            prependTo: 'body',
-            appendTo: '',
-            parentTag: 'a',
-            closeOnClick: false,
-            allowParentLinks: false,
-            nestedParentLinks: true,
-            showChildren: false,
-            removeIds: true,
-            removeClasses: false,
-            removeStyles: false,
-			brand: '',
-            animations: 'jquery',
-            init: function () {},
-            beforeOpen: function () {},
-            beforeClose: function () {},
-            afterOpen: function () {},
-            afterClose: function () {}
-        },
-        mobileMenu = 'slicknav',
-        prefix = 'slicknav',
+    var defaults = {
+        label: 'MENU',
+        duplicate: true,
+        duration: 200,
+        easingOpen: 'swing',
+        easingClose: 'swing',
+        closedSymbol: '&#9658;',
+        openedSymbol: '&#9660;',
+        prependTo: 'body',
+        appendTo: '',
+        parentTag: 'a',
+        closeOnClick: false,
+        allowParentLinks: false,
+        nestedParentLinks: true,
+        showChildren: false,
+        removeIds: true,
+        removeClasses: false,
+        removeStyles: false,
+        brand: '',
+        barItems: 3,
+        bar: '',
+        animations: 'jquery',
+        init: function () {},
+        beforeOpen: function () {},
+        beforeClose: function () {},
+        afterOpen: function () {},
+        afterClose: function () {}
+    },
+    mobileMenu = 'slicknav',
+    prefix = 'slicknav',
 
-        Keyboard = {
-            DOWN: 40,
-            ENTER: 13,
-            ESCAPE: 27,
-            LEFT: 37,
-            RIGHT: 39,
-            SPACE: 32,
-            TAB: 9,
-            UP: 38,
-        };
+    Keyboard = {
+        DOWN: 40,
+        ENTER: 13,
+        ESCAPE: 27,
+        LEFT: 37,
+        RIGHT: 39,
+        SPACE: 32,
+        TAB: 9,
+        UP: 38,
+    };
 
     function Plugin(element, options) {
         this.element = element;
@@ -52,7 +53,7 @@
 
         // Don't remove IDs by default if duplicate is false
         if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
-          this.settings.removeIds = false;
+            this.settings.removeIds = false;
         }
 
         this._defaults = defaults;
@@ -66,21 +67,18 @@
             menu = $(this.element),
             settings = this.settings,
             iconClass,
+            iconBar='',
             menuBar;
 
         // clone menu if needed
-        if (settings.duplicate) {
-            $this.mobileNav = menu.clone();
-        } else {
-            $this.mobileNav = menu;
-        }
+        $this.mobileNav = settings.duplicate ? menu.clone() : menu;
 
         // remove IDs if set
         if (settings.removeIds) {
-          $this.mobileNav.removeAttr('id');
-          $this.mobileNav.find('*').each(function (i, e) {
-              $(e).removeAttr('id');
-          });
+            $this.mobileNav.removeAttr('id');
+            $this.mobileNav.find('*').each(function (i, e) {
+                $(e).removeAttr('id');
+            });
         }
 
         // remove classes if set
@@ -106,28 +104,43 @@
             iconClass += ' ' + prefix + '_no-text';
         }
 
-        if (settings.parentTag == 'a') {
+        if (settings.parentTag === 'a') {
             settings.parentTag = 'a href="#"';
         }
 
         // create menu bar
         $this.mobileNav.attr('class', prefix + '_nav');
         menuBar = $('<div class="' + prefix + '_menu"></div>');
-		if (settings.brand !== '') {
-			var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
-			$(menuBar).append(brand);
-		}
-        $this.btn = $(
-            ['<' + settings.parentTag + ' aria-label="' + settings.label + '" aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
-                '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
-                '<span class="' + iconClass + '">',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                '</span>',
-            '</' + settings.parentTag + '>'
-            ].join('')
-        );
+        if (settings.brand !== '') {
+            var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
+            $(menuBar).append(brand);
+        }
+
+        // create icon bar
+        iconBar += '<' + settings.parentTag + ' aria-label="' + settings.label + '" aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">';
+        if(settings.label === '') {
+            iconClass += ' ' + prefix + '_no-text';
+        } else {
+            iconBar += '<span class="' + prefix + '_menutxt">' + settings.label + '</span>';
+        }
+        iconBar += '<span class="' + iconClass + '">';
+
+        if(settings.bar !== '') {
+            iconBar += settings.bar;
+        } else if(settings.barItems > 0 && settings.barItems !== 3) {
+            for(var b=1; b<=settings.barItems; b++) {
+                iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            }
+        } else {
+            // fallback (default)
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+            iconBar += '<span class="' + prefix + '_icon-bar"></span>';
+        }
+        iconBar += '</span></' + settings.parentTag + '>';
+
+        $this.btn = $(iconBar);
+
         $(menuBar).append($this.btn);
         if(settings.appendTo !== '') {
             $(settings.appendTo).append(menuBar);
@@ -174,8 +187,9 @@
                 if ((!settings.allowParentLinks || settings.nestedParentLinks) || !containsAnchor) {
                     var $wrap = $(nodes).wrapAll(wrapElement).parent();
                     $wrap.addClass(prefix+'_row');
-                } else
-                    $(nodes).wrapAll('<span class="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
+                } else {
+                    $(nodes).wrapAll('<span class="' + prefix + '_parent-link ' + prefix + '_row"/>').parent();
+                }
 
                 if (!settings.showChildren) {
                     item.addClass(prefix+'_collapsed');
@@ -188,36 +202,36 @@
                 // create parent arrow. wrap with link if parent links and separating
                 var arrowElement = $('<span class="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
 
-                if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
+                if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor) {
                     arrowElement = arrowElement.wrap(wrapElement).parent();
+                }
 
                 //append arrow
                 $(nodes).last().after(arrowElement);
 
-
             } else if ( item.children().length === 0) {
-                 item.addClass(prefix+'_txtnode');
+                item.addClass(prefix+'_txtnode');
             }
 
             // accessibility for links
-            item.children('a').attr('role', 'menuitem').click(function(event){
+            item.children('a').attr('role', 'menuitem').on('click', function(event){
                 //Ensure that it's not a parent
                 if (settings.closeOnClick && !$(event.target).parent().closest('li').hasClass(prefix+'_parent')) {
-                        //Emulate menu close if set
-                        $($this.btn).click();
-                    }
+                    //Emulate menu close if set
+                    $($this.btn).trigger('click');
+                }
             });
 
             //also close on click if parent links are set
             if (settings.closeOnClick && settings.allowParentLinks) {
-                item.children('a').children('a').click(function (event) {
+                item.children('a').children('a').on('click', function () {
                     //Emulate menu close
-                    $($this.btn).click();
+                    $($this.btn).trigger('click');
                 });
 
-                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(event){
+                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').on('click', function(){
                     //Emulate menu close
-                        $($this.btn).click();
+                    $($this.btn).trigger('click');
                 });
             }
         });
@@ -237,16 +251,16 @@
         $this.mobileNav.attr('role','menu');
 
         // outline prevention when using mouse
-        $(document).mousedown(function(){
+        $(document).on('mousedown', function(){
             $this._outlines(false);
         });
 
-        $(document).keyup(function(){
+        $(document).on('keyup', function(){
             $this._outlines(true);
         });
 
         // menu button click
-        $($this.btn).click(function (e) {
+        $($this.btn).on('click', function (e) {
             e.preventDefault();
             $this._menuToggle();
         });
@@ -258,7 +272,7 @@
         });
 
         // check for keyboard events on menu button and menu parents
-        $($this.btn).keydown(function (e) {
+        $($this.btn).on('keydown', function (e) {
             var ev = e || event;
 
             switch(ev.keyCode) {
@@ -269,12 +283,10 @@
                     if (ev.keyCode !== Keyboard.DOWN || !$($this.btn).hasClass(prefix+'_open')){
                         $this._menuToggle();
                     }
-                    
+
                     $($this.btn).next().find('[role="menuitem"]').first().focus();
                     break;
             }
-
-            
         });
 
         $this.mobileNav.on('keydown', '.'+prefix+'_item', function(e) {
@@ -302,7 +314,7 @@
                 case Keyboard.DOWN:
                     e.preventDefault();
                     var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
-                    var idx = allItems.index( e.target );
+                    var idx = allItems.index(e.target);
                     var nextIdx = idx + 1;
                     if (allItems.length <= nextIdx) {
                         nextIdx = 0;
@@ -313,8 +325,8 @@
                 case Keyboard.UP:
                     e.preventDefault();
                     var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
-                    var idx = allItems.index( e.target );
-                    var next = allItems.eq( idx - 1 );
+                    var idx = allItems.index(e.target);
+                    var next = allItems.eq(idx - 1);
                     next.focus();
                 break;
                 case Keyboard.LEFT:
@@ -332,14 +344,14 @@
                     e.preventDefault();
                     $this._menuToggle();
                     $($this.btn).focus();
-                    break;    
+                    break;
             }
         });
 
         // allow links clickable within parent tags if set
         if (settings.allowParentLinks && settings.nestedParentLinks) {
-            $('.'+prefix+'_item a').click(function(e){
-                    e.stopImmediatePropagation();
+            $('.'+prefix+'_item a').on('click', function(e){
+                e.stopImmediatePropagation();
             });
         }
     };
@@ -402,7 +414,7 @@
         if (animate) {
             duration = settings.duration;
         }
-        
+
         function afterOpen(trigger, parent) {
             $(trigger).removeClass(prefix+'_animating');
             $(parent).removeClass(prefix+'_animating');
@@ -412,7 +424,7 @@
                 settings.afterOpen(trigger);
             }
         }
-        
+
         function afterClose(trigger, parent) {
             el.attr('aria-hidden','true');
             items.attr('tabindex', '-1');
@@ -425,7 +437,7 @@
             //Fire init or afterClose callback
             if (!init){
                 settings.afterClose(trigger);
-            } else if (trigger == 'init'){
+            } else if (trigger === 'init'){
                 settings.init();
             }
         }
@@ -465,7 +477,7 @@
                     afterClose(trigger, parent)
                 });
             } else if (settings.animations === 'velocity') {
-                
+
                 el.velocity("finish").velocity("slideUp", {
                     duration: duration,
                     easing: settings.easingClose,
